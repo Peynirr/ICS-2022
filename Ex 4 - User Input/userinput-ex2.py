@@ -1,0 +1,5 @@
+print("Hello, please enter your name:")
+name1 = input('''Name:\n''') 
+print("Now, " + name1 + " what is your favorite hobby?")
+hobby = input('''Hobby:\n''')
+print(name1 + ", your favorite hobby is: " + hobby + "!")
