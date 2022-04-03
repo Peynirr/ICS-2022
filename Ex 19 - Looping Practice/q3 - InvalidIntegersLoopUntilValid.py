@@ -6,7 +6,7 @@
 maxNum = 1000
 
 #input
-num = int(input("Please enter a postive integer less than 1000:\t"))
+num = int(input("Please enter a positive integer less than 1000:\t"))
 
 #process
 while num < 1000 and num < 0:
