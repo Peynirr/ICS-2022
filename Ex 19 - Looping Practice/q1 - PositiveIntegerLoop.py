@@ -11,7 +11,6 @@ while num < 1:
     break
 
 n = 0
-print('num , 2**n')
 
 while num >= 2 ** n:
     print(num, 2 ** n) #output
