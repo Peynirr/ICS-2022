@@ -1,8 +1,8 @@
-import math
-x = 0
-
-while (x > 0):
-   y = math.sqrt(x)
-   print(str(x) + ", " + str(y))
-   y = y - 1
-   break
+x= 1500
+y= 2700
+while x <= 2700:
+    x +=1
+    n = x
+    if n %7 ==0 and n % 5== 0:
+        print(n)
+        break
