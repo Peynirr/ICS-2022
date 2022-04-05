@@ -6,8 +6,6 @@
 x = 100
 
 while x <= 100:
-    x += 100
-    n = x
-    if n % 3:
-        print(n)
+    x % 3
+    print(x)
 
