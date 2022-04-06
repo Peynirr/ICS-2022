@@ -4,7 +4,7 @@
 # Printing a Table Containing Cube, Square, and Root Values from 1 to 40
 
 #Process
-print("--Value-------Squared----------Cubed-------Square Root--") #Table Header
+print("\n--Value-------Squared----------Cubed-------Square Root--") #Table Header
     
 for num in range(1, 41): #Range from 1-40
     squared = num * num #Squared Formula
