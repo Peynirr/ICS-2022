@@ -3,7 +3,8 @@
 # Ex 22 Q1e
 
 import random
- 
-for i in range(16):
+
+#Process
+for e in range(9):
    stuff = random.randrange(100, 310, 10)
-   print(stuff)
+   print(stuff) #Output

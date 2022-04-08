@@ -4,6 +4,7 @@
 
 import random
 
-for i in range(9):
-    stuff = random.choice(str("apple, orange, pear, plum"))
-    print(stuff)
+#Process
+for b in range(9):
+    stuff = random.choice(["Apple", "Orange", "Pear", "Plum"])
+    print(stuff) #Output

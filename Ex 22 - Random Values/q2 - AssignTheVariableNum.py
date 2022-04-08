@@ -6,7 +6,7 @@
 import random
 
 #Process
-for i in range (21):
+for i in range (5):
     num = random.randrange(100, 425, 25)
     variation = num / 100
-    print(variation)
+    print(variation) #Output

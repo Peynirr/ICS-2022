@@ -4,6 +4,7 @@
 
 import random
 
-for i in range(7):
+#Process
+for a in range(7):
     stuff = random.randrange(1, 55)
-    print(stuff)
+    print(stuff) #Output
