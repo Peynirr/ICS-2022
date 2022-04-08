@@ -10,11 +10,8 @@ for num in range (1, 101): #Range from 1-101
     squared = num * num #Squared Formula
     cubed = squared * num #Cubed Formula
     squareRoot = num ** 0.5 #Square Root Formula
-    
-    if num == 6:
-        print("--------------------------------------------------------\n--------------------------------------------------------")
 
-    elif num == 11:
+    if num == 11:
         print("--------------------------------------------------------\n--------------------------------------------------------")
 
     elif num == 21:
