@@ -15,7 +15,7 @@ flips = int(input("Please enter the number of times you want to flip the coin:\t
 
 #Process
 for i in range(flips):
-    rand = random.choice(["Heads","Tails"])
+    rand = random.choice(["Heads", "Tails"])
     print(rand)
     time.sleep(0.75) #Time set to slow down the program
 
