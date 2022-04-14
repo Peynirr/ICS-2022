@@ -26,9 +26,9 @@ else:
     print("Thank you. We may continue.") # Output if the betting price is under or equal to $100
 
 #Process of the Game
-print("We are going to role 2 dices. Let's begin!")
-
 for dice in range(1):
+    print("We are going to role 2 dices. Let's begin!")
+
     diceRoll1 = random.choice(['1', '2', '3', '4', '5', '6'])
 
     time.sleep(0.75) #Time set to slow down the program
@@ -40,11 +40,12 @@ for dice in range(1):
 
     if totDiceRoll == "2" or "3" or "12":
         startingEarning -= bet
+        print("You lose.")
         if bet <= 0:
             print("You are out of money, game over.")
             quit("Quitting...")
     else:
         if totDiceRoll == "7" or "11":
             startingEarning += bet #Adds the betted value to the earnings
+            print("You win!")
 
-print()
