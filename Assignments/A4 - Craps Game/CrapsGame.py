@@ -2,50 +2,73 @@
 # April 13 2022
 # A4
 # Playing Craps Game with 2 Dices with Betting
+import random
+from time import sleep
+import sys
 
 #Fixed Variables
-import sys
-import random
-import time
+#
 
+print("Instruction:")
+print("You have $100.")
+print("Roll 2 dice. If the total is 2, 3, or 12, you lose. If the total is 7 or 11, you win.")
+print("If you don't roll any of those numbers, you continue to roll under these conditions:")
+print("Your first roll becomes the winning roll, and if you then roll a 7 before the winning roll, you lose.")
 
-startingEarning = int(100)
+money = 500
 
-#Input
-name = input("Please enter your name:\t")
-bet = int(input("How much would you like to bet? It must be a WHOLE number that is UNDER or EQUAL to $100:\t"))
+def bet(money):
+	print ("You currently have ${}".format(money))
+	bet = input('Place your bet:\t')
+	if bet.isdigit() is True:
+		bet = int(bet)
+		if bet > money or bet < 0:
+			print ("Uh-oh, you don't have $%s to bet."%(bet))
+			bet = int(input('Place your bet: $'))
+	elif bet.isdigit() is False:
+		print ("Please place your bet in only numbers.")
+		bet = int(input('Place your bet: $'))
+	return bet
 
-#Checking the Validity of the Bet Placed
-while bet > startingEarning:
-    print("Try again") #If the betting price is over $100
-    bet = int(input("Please enter a valid betting cost:\t"))
-if bet < 0:
-    print("Game exitting due to errors...") 
-    quit() #Exits code
-else:
-    print("Thank you. We may continue.") # Output if the betting price is under or equal to $100
+def secondroll(previous):
+	print ("*ROLL*")
+	rollone = random.randint(1, 6)
+	rolltwo = random.randint(1, 6)
+	print(rollone, rolltwo)
+	total = rollone + rolltwo
+	sleep(0.75)
+	if total == 7:
+		return False
+	elif total == previous:
+		return True
+	else:
+		ans = secondroll(previous)
+		return ans
+	
+def roll():
+	print ("*ROLL*")
+	rollone = random.randint(1, 6)
+	rolltwo = random.randint(1, 6)
+	print (rollone, rolltwo)
+	sleep(.75)
+	total = rollone + rolltwo
+	if total in (2,3,12):
+		return False
+	elif total in (7,11):
+		return True
+	else:
+		ans = secondroll(total)
+		return ans
 
-#Process of the Game
-for dice in range(1):
-    print("We are going to role 2 dices. Let's begin!")
-
-    diceRoll1 = random.choice(['1', '2', '3', '4', '5', '6'])
-
-    time.sleep(0.75) #Time set to slow down the program
-
-    diceRoll2 = random.choice(['1', '2', '3', '4', '5', '6'])
-    print("{}, {}".format(diceRoll1, diceRoll2))
-
-    totDiceRoll = diceRoll1 + diceRoll2
-
-    if totDiceRoll == "2" or totDiceRoll == "3" or totDiceRoll == "12":
-        startingEarning -= bet
-        print("You lose.")
-        if bet <= 0:
-            print("You are out of money, game over.")
-            quit("Quitting...")
-    else:
-        if totDiceRoll == "7" or totDiceRoll == "11":
-            startingEarning += bet #Adds the betted value to the earnings
-            print("You win!")
-
+while money > 0:
+	mybet = bet(money)
+	money = money - mybet
+	print ("You have ${} left to spend.".format(money))
+	if roll():
+		print ("You Win!")
+		money = money + (2*mybet)
+	else:
+		print ("Crap Out!")
+if money == 0:
+    print ("you have no more money :(\nYou lose.")
+    sys.exit("Exitting...")
