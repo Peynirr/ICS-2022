@@ -1,13 +1,7 @@
-divisor = 3
-
-number = int(540)
-
-test = number
-
 count = 2
-
-while(test % divisor == 0):
-   test = test // divisor
-   count = count + 1
-
-print(str(number) + " has " + str(count) + " divisors")
+ 
+while(count < 40):
+   if count % 10 == 0:
+       print()
+   print("{:5}{:5}".format(count, count**2))
+   count = count + 2
