@@ -7,7 +7,3 @@ seuss = ["oh", "the", "places", "you'll", "go"]
 for i in seuss:
      seuss.reverse()
      print(seuss)
-
-
-
-
