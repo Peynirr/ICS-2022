@@ -1,7 +1,9 @@
-one = [1, 2, 3, 4, 6, 7, 8, 9, 10]
-
-for i in range(len(one)):
-    if i % 2 == 1:
-        print(one[i])
-
-
+fileNew = open("sample.txt",'w')
+fileRead = open("sample.txt", 'r')
+fileAdd = open("sample.txt",'a')
+hamlet = ["To", "be", "or", "not", "to", "be", "that", "is", "the", "question"]
+for i in hamlet:
+    fileAdd.write(str(i) + "\n")
+    fileNew.close()
+fileRead.readlines
+fileNew.close()
