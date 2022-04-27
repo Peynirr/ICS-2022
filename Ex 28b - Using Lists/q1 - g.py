@@ -4,7 +4,7 @@
 # Finding the average of the values in a list
 
 #List
-two = [1, 2, 3, 4, 6, 7, 8, 9, 10] #This isn't apart of the answer
+two = [1, 2, 3, 4, 6, 7, 8, 9, 10] #Used for verifying
 
 #Process
 average = sum(two) / len(two)

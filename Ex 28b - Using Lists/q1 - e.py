@@ -4,7 +4,7 @@
 # Finding the smallest value and its index location in a list
 
 #List
-one = [2, 3, 4, 6, 7, 1, 8, 9, 10] #This isn't apart of the answer
+one = [2, 3, 4, 6, 7, 1, 8, 9, 10] #Used for verifying
 
 #Process
 minValue = min(one)

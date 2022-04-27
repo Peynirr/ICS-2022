@@ -3,7 +3,7 @@
 # Ex 28b Q1d
 # Swapping values from first and second index in a list
 
-two = [1, 2, 3, 4, 6, 7, 8, 9, 10] #This isn't apart of the answer
+two = [1, 2, 3, 4, 6, 7, 8, 9, 10] #Used for verifying
 
 #Process
 index1 = two.index(1) #Collects from first index

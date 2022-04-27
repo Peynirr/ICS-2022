@@ -5,7 +5,7 @@
 from statistics import median
 
 #List
-two = [1, 2, 3, 4, 6, 7, 8, 9, 10]
+two = [1, 2, 3, 4, 6, 7, 8, 9, 10] 
 
 #Process
 twoLength = len(two)
