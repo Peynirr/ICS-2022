@@ -4,7 +4,7 @@
 # Printing values that are in the odd index values
 
 #List
-one = [1, 2, 3, 4, 6, 7, 8, 9, 10] #This isn't apart of the answer
+one = [1, 2, 3, 4, 6, 7, 8, 9, 10] #Used for verifying
 
 #Process
 for i in range(len(one)):
