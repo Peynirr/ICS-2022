@@ -1,48 +1,121 @@
 # May 4 2022
-# Main 
+# Main
+
+import sys
+import os
 import time
-print("This is a quiz.")
+import tkinter as tk
 
-name = input("Please enter you name:\t")
-score = 0
+master = tk.Tk()
 
-print("Thank you! Your name is {}.".format(name))
-time.sleep(0.75)
+def mainMenu():
+    print("Hello, please choose what you want.")
+    print("[1] Information")
+    print("[2] Take the quiz")
+    print("[3] Quit")
 
-#Question 1
-print("Let's begin.")
-time.sleep(0.5)
+    selection = int(input("Enter choice:\t"))
+    if selection == 1:
+        information()
+    elif selection == 2:
+        newGame()
+    elif selection == 3:
+        exit
+    else:
+        print("Invalid choice. Enter a number 1-3!")
+        mainMenu()
 
-print("Question 1: What is utilitarianism?\n")
-print("a. It is the moral philosophy of maximising happiness and minimizing pain.\nb. It is the moral philosophy of thinking that something is good if the intentions are good, rather than the result.\nc. It is the belief that there is only one right way to do something.\nd. It is the belief that only one person should have authority in a given setting.")
-quest1 = input("\nType the letter that correspondes to the chosen answer:\t\t")
+def information():
+    print("Hello")
+    time.sleep(2.5)
+    print("Sending you back to the menu...")
+    mainMenu()
 
-time.sleep(0.5)
+def newGame():
+    
+    guesses = []
+    correctGuesses = 0
+    questionNum = 1
 
-if quest1 == "a." or quest1 == "a":
-    print("Correct!")
-    time.sleep(0.5)
-    score += 1
-    print("Score: {}".format(score))
-else:
-    print("Incorrect.")
+    for key in questions:
+        print("-----------")
+        print(key)
+        for i in options[questionNum - 1]:
+            print(i)
+        guess = input("Please enter (A, B, C, D):\t")
+        guess = guess.upper()
+        guesses.append(guess)
 
-time.sleep(0.5)
+        correctGuesses += checkAnswer(questions.get(key), guess)
+        questionNum += 1
+    
+    displayScore(correctGuesses, guesses)
+#-----------------
+def checkAnswer(answer, guess):
+    
+    if answer == guess: 
+        print("You are correct!")
+        return 1
+    else:
+        print("Incorrect!")
+        return 0
 
-#Question 2
-print("Question 2: What is deontology?\n")
-print("a. It is the moral philosophy of thinking optimistically, no matter what situation you are in.\nb.It is the moral philosophy that you should think pessimistically so you do not get hurt by unrealistic expectations.\nc.It is the moral philosophy of believing that the characteristics of an action contribute to if it is good, rather than the result of said action.\nd. It is the belief that you cannot control your life path and that it is chosen for you.\n")
-quest2 = input("\nType the letter that correspondes to the chosen answer:\t\t")
+#-----------------
+def displayScore(correctGuesses, guesses):
+    print("-------------")
+    print("RESULTS")
+    print("-------------")
+    
+    print("Answers: ", end = "")
+    for i in questions:
+        print(questions.get(i), end = " ")
+    print()
 
-time.sleep(0.5)
+    print("Guesses: ", end = "")
+    for i in guesses:
+        print(i, end = " ")
+    print()
 
-if quest2 == "c." or quest2 == "c":
-    print("Correct!")
-    time.sleep(0.5)
-    score += 1
-    print("Score: {}".format(score))
-else:
-    print("Incorrect.")
+    score = correctGuesses
+    print("Your score is: {}!".format(score))
 
-time.sleep(0.5)
+    
 
+#-----------------
+def playAgain():
+    response = input("Do you want to play again?: (Yes or No):\t")
+    response = response.upper()
+
+    if response == "YES" or response == "Y":
+        mainMenu()
+    else:
+        return False
+
+#-----------------
+def bye():
+    print("Goodbye!")
+    exit
+
+#-----------------
+
+questions = {
+ "What is utilitarianism?: ": "A",
+ "What is deontology?: ": "C",
+ "Moral ethics scenario: Someone hacks your computer to take information with the intent to do harm. You are sad because someone did this as a selfish act without any good intentions. What moral philosophy are they most likely to follow? ": "A",
+ "What does ICT stand for?: ": "C",
+ "What is ethics?: ": "B",
+ "What is a big issue in computer ethics? ": "D",
+ "What is ICT?: ": "D",
+ "Which of these are not in the Ten Commandments of Computer Ethics?: ": "A"
+}
+
+options = [["A. It is the moral philosophy of maximising happiness and minimizing pain.", "B. It is the moral philosophy of thinking that something is good if the intentions are good, rather than the result.", "C. It is the belief that there is only one right way to do something.", "D. It is the belief that only one person should have authority in a given setting."], 
+          ["A. It is the moral philosophy of thinking optimistically, no matter what situation you are in.", "B. It is the moral philosophy that you should think pessimistically so you do not get hurt by unrealistic expectations.", "C. It is the moral philosophy of believing that the characteristics of an action contribute to if it is good, rather than the result of said action.", "D. It is the belief that you cannot control your life path and that it is chosen for you."],
+          ["A. Utilitarianism", "B. Deontology", "C. None of the above", "D. All of the above"],
+          ["A. Information and Critical Thinking", "B. Interests towards Computer Technology", "C. Information and Communications Technology", "D. Intellectual Communications Technology"],
+          ["A. It is ones religion and beliefs about cosmology and something greater than human life.", "B. It is the moral discipline about what is good and what is bad.", "C. It is the steps someone takes to build a proper and successful life.", "D. It is the social skills of an individual and how an individual interacts with others."],
+          ["A. Internet privacy", "B. Piracy", "C. Harmful actions online", "D. All of the above"],
+          ["A. It is a thinking skill set relating to how someone can make good decisions and bad decisions.", "B. It is someone’s interest towards various computer technologies.", "C. It is one’s knowledge about various computer technologies, like the different parts to a phone.", "D. It is the technology used for different communications, like telecommunications."],
+          ["A. You may inflict harm if someone first inflicted harm to you.", "B. You may not copy or use software that you did not pay for or that you did not receive permission to use.", "C. You should think about the consequences of the program you are writing.", "D. None of the above."]]
+
+mainMenu()
