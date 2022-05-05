@@ -4,12 +4,9 @@
 import sys
 import os
 import time
-import tkinter as tk
-
-master = tk.Tk()
 
 def mainMenu():
-    print("Hello, please choose what you want.")
+    print("")
     print("[1] Information")
     print("[2] Take the quiz")
     print("[3] Quit")
