@@ -7,7 +7,6 @@ import time
 #Function that prompts the main menu
 def mainMenu():
     print("Welcome to the...")
-
     time.sleep(1)
     #Title
     print(" ___ ____ _____   _____ _   _     _             ___        _     \n|_ _/ ___|_   _| | ____| |_| |__ (_) ___ ___   / _ \ _   _(_)____ \n | | |     | |   |  _| | __| '_ \| |/ __/ __| | | | | | | | |_  / \n | | |___  | |   | |___| |_| | | | | (__\__ \ | |_| | |_| | |/ /\n|___\____| |_|   |_____|\__|_| |_|_|\___|___/  \__\_\___,_|_/___|")
@@ -36,9 +35,9 @@ def mainMenu():
         print("Invalid choice. Enter a number 1-3!") #Takes the player back to the menu to input a correct number
         mainMenu()
 
-#Function that displays the information
+#Function that displays the information point by point
 def information():
-    print(" ___       __                    _   _\n|_ _|_ _  / _|___ _ _ _ __  __ _| |_(_)___ _ _ \n | || ' \|  _/ _ \ '_| '  \/ _` |  _| / _ \ ' \ \n|___|_||_|_| \___/_| |_|_|_\__,_|\__|_\___/_||_|")
+    print(" ___       __                    _   _\n|_ _|_ _  / _|___ _ _ _ __  __ _| |_(_)___ _ _ \n | || ' \|  _/ _ \ '_| '  \/ _` |  _| / _ \ ' \ \n|___|_||_|_| \___/_| |_|_|_\__,_|\__|_\___/_||_|\n")
     time.sleep(1)
     print("\n· Ethics are moral principles that govern a person's behaviour or the conduct of an activity. It’s a philosophy that 'involves systematising, defending, and recommending concepts \nof right and wrong behaviour.' The word ethics originates from the Greek word “ethos”, which means “way of living.” Ethics reflects on human beings and their interactions with the \nenvironment and with other humans. Ethics are very closely related to the independence of individuals, such as making their own choices.\n")
     time.sleep(3)
@@ -59,8 +58,8 @@ def information():
 
 def newGame():
     guesses = []
-    correctGuesses = 0
-    questionNum = 1
+    correctGuesses = 0 #Correct Guesses
+    questionNum = 1 #Question number
     print("\n.d88b. 8    8 888 8888P \n8P  Y8 8    8  8    dP  \n8b wd8 8b..d8  8   dP   \n`Y88Pw `Y88P' 888 d8888\n")
     for key in questions:
         print("-------------------------")
@@ -68,6 +67,7 @@ def newGame():
         for i in options[questionNum - 1]:
             print(i)
         guess = input("Please enter (A, B, C, D):\t")
+        time.sleep(1)
         guess = guess.upper()
         guesses.append(guess)
 
@@ -90,7 +90,7 @@ def checkAnswer(answer, guess):
 #Function to display the score at the end of quiz
 def displayScore(correctGuesses, guesses):
     print("-------------------------")
-    print("RESULTS")
+    print(" ___ ___ ___ _   _ _  _____ ___ \n| _ \ __/ __| | | | ||_   _/ __| \n|   / _|\__ \ |_| | |__| | \__ \ \n|_|_\___|___/\___/|____|_| |___/\n")
     print("-------------------------")
     
     print("Answers: ", end = "")
@@ -117,8 +117,10 @@ def playAgain():
     else:
         bye()
 
-#fuction to end the game
+#Function to end the game
 def bye():
+    print("You are leaving the program...")
+    time.sleep(0.5)
     print("Goodbye!")
     exit
 
