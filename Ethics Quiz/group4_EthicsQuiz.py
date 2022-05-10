@@ -1,28 +1,47 @@
-# May 4 2022
-# Main
-
+# Group 4
+# May 5 2022
+# ICS201
+# In-Class Group Activity
+# Multiple Choice Program based on the information of ethics and its relation to ICT
 import sys
 import time
+
+# Variable Dictionary
+# selection - number chosen from 1-3 in the main menu
+# guesses - the letters chosen by the player in the quiz; arrayed in a list
+# correctGuesses - The correct guesses in the quiz
+# questionNum - the question number for each question in the quiz
+# key - the letter from the list that is the answer for the quiz
+# questions - the list of questions alongside the letter of the answer
+# options - the list of the multiple choice options for each question in the quiz
+# guess - the player's guess ranging from a, b, c, or d for each question
+# answer - the list of answers; used to check the guess with the correct answer
+# score - the score of the current game of the player; equal to correctGuesses
+# response - stores players response on if they want to play again
+
+#Process
 
 #Function that prompts the main menu
 def mainMenu():
     print("Welcome to the...")
     time.sleep(1)
-    #Title
+    
+    #Title Art for the main menu
     print(" ___ ____ _____   _____ _   _     _             ___        _     \n|_ _/ ___|_   _| | ____| |_| |__ (_) ___ ___   / _ \ _   _(_)____ \n | | |     | |   |  _| | __| '_ \| |/ __/ __| | | | | | | | |_  / \n | | |___  | |   | |___| |_| | | | | (__\__ \ | |_| | |_| | |/ /\n|___\____| |_|   |_____|\__|_| |_|_|\___|___/  \__\_\___,_|_/___|")
     print("\n")
     print('''888 .d88b .d88b. d88b .d88b. d8      d88b    db     \n 8  8P    YPwww. " dP 8P  Y8  8       wwP   dPYb    \n 8  8b        d8  dP  8b  d8  8 wwww    8  dPwwYb  \n888 `Y88P `Y88P' d888 `Y88P'  8      Y88P dP    Yb ''')
     print("\nBy Group 4.")
+    print("------------------------------------------------------------------------------")
     time.sleep(2)
 
     #Player gets an option to choose from 1-3
-    print("")
+    print()
     print("Please choose an option from 1-3:\t")
     print("[1] Information")
     print("[2] Take the quiz")
     print("[3] Quit")
 
-    selection = int(input("Please enter here:\t"))
+    selection = int(input("Please enter your choice:\t"))
 
     time.sleep(2)
     if selection == 1: #Takes the player to the information fuction
@@ -37,7 +56,11 @@ def mainMenu():
 
 #Function that displays the information point by point
 def information():
+    #Title Art for the information section
+    print("------------------------------------------------------------------------------")
     print(" ___       __                    _   _\n|_ _|_ _  / _|___ _ _ _ __  __ _| |_(_)___ _ _ \n | || ' \|  _/ _ \ '_| '  \/ _` |  _| / _ \ ' \ \n|___|_||_|_| \___/_| |_|_|_\__,_|\__|_\___/_||_|\n")
+    print("------------------------------------------------------------------------------")
+    
     time.sleep(1)
     print("\n· Ethics are moral principles that govern a person's behaviour or the conduct of an activity. It’s a philosophy that 'involves systematising, defending, and recommending concepts \nof right and wrong behaviour.' The word ethics originates from the Greek word “ethos”, which means “way of living.” Ethics reflects on human beings and their interactions with the \nenvironment and with other humans. Ethics are very closely related to the independence of individuals, such as making their own choices.\n")
     time.sleep(3)
@@ -51,7 +74,7 @@ def information():
     time.sleep(3)
     print("· Deontology is an ethical theory that helps you make decisions based on duty. An action is considered good based on motive, and whether the person had good intentions or \nmorals to begin with, rather than the end result of the action.\n")
     time.sleep(3)
-    print("Thank you for reading.\n")
+    print("------------------------------------------------------------------------------\n Thank you for reading.\n")
     time.sleep(2)
 
     playAgain()
@@ -60,18 +83,23 @@ def newGame():
     guesses = []
     correctGuesses = 0 #Correct Guesses
     questionNum = 1 #Question number
+    
     print("\n.d88b. 8    8 888 8888P \n8P  Y8 8    8  8    dP  \n8b wd8 8b..d8  8   dP   \n`Y88Pw `Y88P' 888 d8888\n")
+    
     for key in questions:
         print("-------------------------")
-        print(key)
+        print(key) #Prints each element in the questions list
+        
         for i in options[questionNum - 1]:
             print(i)
-        guess = input("Please enter (A, B, C, D):\t")
+        
+        guess = input("Please enter (A, B, C, D):\t") #Prompts the player to choose a, b, c, or d
         time.sleep(1)
-        guess = guess.upper()
-        guesses.append(guess)
+        guess = guess.upper() #Makes lower case inputs uppercase
+        guesses.append(guess) 
 
         correctGuesses += checkAnswer(questions.get(key), guess)
+        time.sleep(1)
         questionNum += 1
     
     displayScore(correctGuesses, guesses)
@@ -79,16 +107,17 @@ def newGame():
 
 #Function to check each answer
 def checkAnswer(answer, guess):
-    
     if answer == guess: 
-        print("You are correct!")
+        print("You are correct!") #Prints Correct if the answer is correct
         return 1
+
     else:
-        print("Incorrect!")
+        print("Incorrect!") #Prints Correct if the answer is correct
         return 0
 
-#Function to display the score at the end of quiz
+#Function to display the results at the end of quiz
 def displayScore(correctGuesses, guesses):
+    #Title Art for the results    
     print("-------------------------")
     print(" ___ ___ ___ _   _ _  _____ ___ \n| _ \ __/ __| | | | ||_   _/ __| \n|   / _|\__ \ |_| | |__| | \__ \ \n|_|_\___|___/\___/|____|_| |___/\n")
     print("-------------------------")
@@ -104,8 +133,7 @@ def displayScore(correctGuesses, guesses):
     print()
 
     score = correctGuesses
-    print("Your score is: {}!".format(score))
-
+    print("Your score is: {}!".format(score)) #Displays the score at the end of the quiz
 
 #Function to play again
 def playAgain():
@@ -113,8 +141,11 @@ def playAgain():
     response = response.upper()
 
     if response == "YES" or response == "Y":
+        #Sends user to the main menu to restart the game
         mainMenu()
+
     else:
+        #Runs this function to end the game
         bye()
 
 #Function to end the game
@@ -126,24 +157,24 @@ def bye():
 
 #List for the questions along with their answer
 questions = {
- "What is utilitarianism?: ": "A", #1
- "What is deontology?: ": "C", #2
- "Moral ethics scenario: Someone hacks your computer to take information with the intent to do harm. You are sad because someone did this as a selfish act without any good intentions. What moral philosophy are they most likely to follow? ": "A", #3
- "What does ICT stand for?: ": "C", #4
- "What is ethics?: ": "B", #5
- "What is a big issue in computer ethics? ": "D", #6
- "What is ICT?: ": "D", #7
- "Which of these are not in the Ten Commandments of Computer Ethics?: ": "A" #8
+ "What is utilitarianism?: ": "A", #Q1
+ "What is deontology?: ": "C", #Q2
+ "Moral ethics scenario: Someone hacks your computer to take information with the intent to do harm. You are sad because someone did this as a selfish act without any good intentions. What moral philosophy are they most likely to follow? ": "A", #Q3
+ "What does ICT stand for?: ": "C", #Q4
+ "What is ethics?: ": "B", #Q5
+ "What is a big issue in computer ethics? ": "D", #Q6
+ "What is ICT?: ": "D", #Q7
+ "Which of these are not in the Ten Commandments of Computer Ethics?: ": "A" #Q8
 }
 
 #List for the multiple options for each question
-options = [["A. It is the moral philosophy of maximising happiness and minimizing pain.", "B. It is the moral philosophy of thinking that something is good if the intentions are good, rather than the result.", "C. It is the belief that there is only one right way to do something.", "D. It is the belief that only one person should have authority in a given setting."], #1
-          ["A. It is the moral philosophy of thinking optimistically, no matter what situation you are in.", "B. It is the moral philosophy that you should think pessimistically so you do not get hurt by unrealistic expectations.", "C. It is the moral philosophy of believing that the characteristics of an action contribute to if it is good, rather than the result of said action.", "D. It is the belief that you cannot control your life path and that it is chosen for you."], #2
-          ["A. Utilitarianism", "B. Deontology", "C. None of the above", "D. All of the above"], #3
-          ["A. Information and Critical Thinking", "B. Interests towards Computer Technology", "C. Information and Communications Technology", "D. Intellectual Communications Technology"], #4
-          ["A. It is ones religion and beliefs about cosmology and something greater than human life.", "B. It is the moral discipline about what is good and what is bad.", "C. It is the steps someone takes to build a proper and successful life.", "D. It is the social skills of an individual and how an individual interacts with others."], #5
-          ["A. Internet privacy", "B. Piracy", "C. Harmful actions online", "D. All of the above"], #6
-          ["A. It is a thinking skill set relating to how someone can make good decisions and bad decisions.", "B. It is someone’s interest towards various computer technologies.", "C. It is one’s knowledge about various computer technologies, like the different parts to a phone.", "D. It is the technology used for different communications, like telecommunications."], #7
-          ["A. You may inflict harm if someone first inflicted harm to you.", "B. You may not copy or use software that you did not pay for or that you did not receive permission to use.", "C. You should think about the consequences of the program you are writing.", "D. None of the above."]] #8
+options = [["A. It is the moral philosophy of maximising happiness and minimizing pain.", "B. It is the moral philosophy of thinking that something is good if the intentions are good, rather than the result.", "C. It is the belief that there is only one right way to do something.", "D. It is the belief that only one person should have authority in a given setting."], #Q1 
+          ["A. It is the moral philosophy of thinking optimistically, no matter what situation you are in.", "B. It is the moral philosophy that you should think pessimistically so you do not get hurt by unrealistic expectations.", "C. It is the moral philosophy of believing that the characteristics of an action contribute to if it is good, rather than the result of said action.", "D. It is the belief that you cannot control your life path and that it is chosen for you."], #Q2
+          ["A. Utilitarianism", "B. Deontology", "C. None of the above", "D. All of the above"], #Q3
+          ["A. Information and Critical Thinking", "B. Interests towards Computer Technology", "C. Information and Communications Technology", "D. Intellectual Communications Technology"], #Q4
+          ["A. It is ones religion and beliefs about cosmology and something greater than human life.", "B. It is the moral discipline about what is good and what is bad.", "C. It is the steps someone takes to build a proper and successful life.", "D. It is the social skills of an individual and how an individual interacts with others."], #Q5
+          ["A. Internet privacy", "B. Piracy", "C. Harmful actions online", "D. All of the above"], #Q6
+          ["A. It is a thinking skill set relating to how someone can make good decisions and bad decisions.", "B. It is someone’s interest towards various computer technologies.", "C. It is one’s knowledge about various computer technologies, like the different parts to a phone.", "D. It is the technology used for different communications, like telecommunications."], #Q7
+          ["A. You may inflict harm if someone first inflicted harm to you.", "B. You may not copy or use software that you did not pay for or that you did not receive permission to use.", "C. You should think about the consequences of the program you are writing.", "D. None of the above."]] #Q8
 
 mainMenu()
