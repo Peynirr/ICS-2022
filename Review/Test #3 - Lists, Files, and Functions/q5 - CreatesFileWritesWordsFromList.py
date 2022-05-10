@@ -1,6 +1,6 @@
 # Omercan
 # April 28 2022
-# Review - Q6
+# Review - Q5
 # Creating a File and Adding Text from a List to it
 
 #List
