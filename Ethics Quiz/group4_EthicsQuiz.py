@@ -1,4 +1,4 @@
-# Group 4
+# Group 4 - Omercan
 # May 5 2022
 # ICS201
 # In-Class Group Activity
