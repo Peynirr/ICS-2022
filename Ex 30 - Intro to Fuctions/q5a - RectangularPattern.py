@@ -3,12 +3,22 @@
 # Ex 30 Q5a
 # Prints a rectangular pattern using defined functions
 
-def printRectangle():
-    width = input("Please enter your width of choice:\t")
-    height = input("Please enter your height of choice:\t")
-    symbol = input("Please enter your choice of symbol for the rectange:\t")
+#Input
+width = int(input("Please enter the width:  "))
+height = int(input("Please enter the height:  "))
+sym = str(input("Please enter your symbol of choice:  "))
 
-    for sym in range(0, width):
-        i = print(symbol , end = "")
-    print(i * height)
-printRectangle()
+#Process
+def printRectangle(key):
+    def Decoration(func):
+        def wrapper(width, height):
+            return func(width * key, height)
+        return wrapper
+    return Decoration
+
+@printRectangle(sym)
+def rectangle(width, height):
+    return [width for i in range(height)]
+
+#Output
+print("\n".join(rectangle(width, height))) #Prints the custom rectangle
