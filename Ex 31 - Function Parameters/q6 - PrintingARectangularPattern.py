@@ -1,12 +1,12 @@
 # Omercan
-# May 9 2022
-# Ex 30 Q5a
-# Printing a Rectangular Pattern Using Functions
+# May 10 2022
+# Ex 31 Q6
+# Printing a rectangular pattern using functions
 
 #Input
 width = int(input("Please enter the width:  "))
 height = int(input("Please enter the height:  "))
-symbol = str(input("Please enter your symbol of choice:  "))
+symbol = str(input("Please enter the symbol of choice:  "))
 
 #Process
 def printRectangle(symbol, width, height):

@@ -4,10 +4,8 @@
 # Finding the area of a rectangle using a function
 
 #Process
-def putArea(length, width):
-    #Input
-    length = int(input("Enter the length:\t"))
-    width = int(input("Enter the width:\t"))   
-    area = length * width
-    print("The area is: {} units".format(area))
-putArea()
+def putArea(width, height):
+    area = width * height #Formula for the area of rectangle
+    #Output
+    print("The area is: {:.1f} units.".format(area))
+putArea(True, "False")
