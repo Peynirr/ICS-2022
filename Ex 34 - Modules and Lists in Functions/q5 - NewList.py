@@ -14,4 +14,6 @@ def copyList(list):
     #Output
     print("The existing list was: {}".format(list))
     print("The new list is: {}.".format(newList))
+
+#Fuction Output
 copyList(list) #Call function
