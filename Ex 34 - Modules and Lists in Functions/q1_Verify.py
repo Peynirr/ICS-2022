@@ -16,6 +16,6 @@ def isNumber(number):
         front = x[0:decimalDot]
         back = x[decimalDot + 1:]
 
-        if decimalDot.isdigit() or front.isdigit() or front == "" and back.isdigit or back == "":
+        if decimalDot.isdigit() or front.isdigit() or front == "" and back.isdigit() or back == "":
             return True
     return False
