@@ -3,27 +3,25 @@
 # Ex 34 Q4
 # Checking the Average in a List
 
-list = []
-
-
+list = [3, 4]
 
 #Function
-def isNumber(element):
-    for i in range(0, len(list)):
-        element = input("Enter anything at index {}:\t".format(i))
-        list.append(element)
+def verify():
+    import VerifyModule
 
+def isNumber(element):
+    
     try:
-        value = int(element)
+        value = int(list)
         int(isinstance(list))
         listAvg(list)
     except ValueError:
         try:
-            value = float(element)
+            value = float(list)
             listAvg(list)
         except ValueError:
             print("Cannot calculate the average of non-numerical values.")
-isNumber(element) #Call function
+isNumber(list) #Call function
 
 def average(list):
     return sum(list) / len(list)
