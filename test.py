@@ -1,31 +1,10 @@
-# Test
+# Test Environment
+
+stuff = [-5, 34, 18, 9]
+thing = [0.1,0.5, 7.25, 14.20, -3.0, -6.8]
+foobar = ["toronto", "vancouver", "montreal", "calgary", "halifax" , "St. John’s"]
+yolo = [1, True, 15.5, "Nay", 10, 20, 15, 40, 50]
 
 
 
-#List
-list = []
- 
-#Number of elements in the list
-listSize = int(input("Please enter the list size:\t"))
- 
-#For loop to add to the list
-for i in range(0, listSize):
-    element = input("Enter anything at index {}:\t".format(i))
-    list.append(element)
 
-def num():
-    print(list.isnumeric())
-
-num()
-
-def listToString(): 
-    
-    # initialize an empty string
-    string = "" 
-    
-    # traverse in the string  
-    for ele in list: 
-        string += ele  
-    
-    # return string  
-    return string 
