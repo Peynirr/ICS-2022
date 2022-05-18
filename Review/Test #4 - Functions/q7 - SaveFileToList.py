@@ -1,6 +1,6 @@
 # Omercan
 # May 17 2022
-# Review - Q7
+# Review Q7
 # Saving a File to a List
  
 fRead = open("view.txt", 'r') #Variable designated to reading the file

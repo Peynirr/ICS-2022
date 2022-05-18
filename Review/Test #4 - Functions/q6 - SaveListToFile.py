@@ -1,6 +1,6 @@
 # Omercan
 # May 17 2022
-# Review - Q6
+# Review Q6
 # Saving a List into a Text File
  
 #List
