@@ -8,10 +8,10 @@ stuff = [-5, 34, 18, 9]
 
 #Function
 def getOdd(stuff):
-    newStuff =[]
-    for i in stuff:
-        if i % 2 !=0:
-            newStuff.append(i)
+    newStuff = []
+    for x in stuff:
+        if x % 2 != 0:
+            newStuff.append(x)
     print(tuple(newStuff))
 
 #Call Function
