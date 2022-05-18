@@ -3,28 +3,23 @@
 # Ex 35 Q3
 # Spliting the First Name and Last Name in a String
 
-#String
-fullName = ('HarryPotter')
-
 #Function
 def splitName(fullName):
-    if type(fullName) == str:
-        if " " in fullName == True:
-            names = fullName.split()
-            tupNames = tuple(names)
-            print(tupNames)
-
-        else:
-            if " " in fullName == False:
-                newFullName = fullName + None
-                names = newFullName.split()
-                tupNames = tuple(names)
-                print(tupNames)
-
+    if type(fullName) != str:
+        #Outputs if fullName is not a String
+        return (None, None)
+    
     else:
-        
-        
-        print("Error. This is not a string.")
-        exit
+        #Finds a space starting from the beginning of the string
+        fName = (fullName[:(fullName.find(" "))])
+        #Finds a space starting from the end of the string
+        lName = (fullName[(fullName.find(" ") +1):])
 
-splitName(fullName) #Call function
+        if fullName.find(" ") == -1: #Outputs if there is no space 
+            return (fullName + ", " + str(None))
+    
+        else:
+            return (fName + ", " + lName)
+
+#Call Function
+print(splitName('Omercan Ozkan'))
