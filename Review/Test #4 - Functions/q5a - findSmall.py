@@ -7,8 +7,6 @@
 foobar = ["toronto", "vancouver", "montreal", "calgary", "halifax" , "St. John’s"]
 
 def findSmall(foobar):
-    minValue = min(foobar, key=len)
-    tupNames = minValue.split()
-    tupNames = tuple(minValue)
-    print(tupNames)
+    foobar.sort()
+    print("The smallest value in is list is " + foobar[1])
 findSmall(foobar)
