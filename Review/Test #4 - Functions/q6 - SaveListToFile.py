@@ -1,20 +1,20 @@
 # Omercan
 # May 17 2022
-# Review - Q6
+# Review Q6
 # Saving a List into a Text File
-
+ 
 #List
-foobar = ["toronto", "vancouver", "montreal", "calgary", "halifax" , "St. John’s"]
-
+foobar = ["Toronto", "Vancouver", "Montreal", "Calgary", "Halifax" , "St. John’s"]
+ 
 #Process
-fileWrite = open("view.txt", 'w') #Creates the file
-fileAppend = open("view.txt", 'a') #Adds to the file
-
+fWrite = open("view.txt", 'w') #Creates the file
+fAppend = open("view.txt", 'a') #Adds to the file
+ 
 #For Loop
-for element in foobar: 
-    #Writes then skips a line for every element in the list
-    fileWrite.write(str(element) + "\n")
-    fileAppend.write(element + "\n")
-
+for ele in foobar:
+    #Writes to the File
+    fWrite.write(str(ele) + "\n")
+    fAppend.write(ele + "\n")
+ 
 #Closes the file
-fileWrite.close()
+fWrite.close()

@@ -6,7 +6,10 @@
 #List
 foobar = ["toronto", "vancouver", "montreal", "calgary", "halifax" , "St. John’s"]
 
+#Function
 def findSmall(foobar):
-    foobar.sort()
-    print("The smallest value in is list is " + foobar[1])
+   foobar.sort()
+   print("The smallest value in is list is " + foobar[1])
+ 
+#Call Function
 findSmall(foobar)
