@@ -1,3 +1,8 @@
+# Omercan
+# May 20 2022
+# Ex 36 Q1
+# Drawing a Circle and Square With Diagonal Lines
+
 #Setup
 import pygame
 from pygame.color import THECOLORS
@@ -22,11 +27,11 @@ pygame.draw.circle(screen, (THECOLORS["orangered1"]), (100, 100), 100)
 pygame.draw.circle(screen, (THECOLORS["darkorchid2"]), (600, 500,), 100)
 
 #Circle
-pygame.draw.circle(screen, (THECOLORS["yellow1"]),  (350, 300), 100)
+pygame.draw.rect(screen, (THECOLORS["yellow1"]), (300, 250, 100, 100))
 
 #Lines
 pygame.draw.line(screen, (THECOLORS["maroon1"]), (0, 600), (700, 0), 4)
-pygame.draw.line(screen, (THECOLORS["deeppink1"]), (700, 0), (350, 600), 4)
+pygame.draw.line(screen, (THECOLORS["deeppink1"]), (0, 0), (700, 600), 4)
 
 pygame.display.flip()
 
@@ -41,4 +46,3 @@ while keepGoing:
             keepGoing = False
 pygame.display.flip()
 pygame.quit()
-
