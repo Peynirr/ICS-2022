@@ -43,7 +43,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 74642CFA283E879E00BEFCAB /* Build configuration list for PBXProject "Minigolf" */;
+			buildConfigurationList = 74642CFA283E879E00BEFCAB /* Build configuration list for PBXProject "ICS-2022" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -194,7 +194,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		74642CFA283E879E00BEFCAB /* Build configuration list for PBXProject "Minigolf" */ = {
+		74642CFA283E879E00BEFCAB /* Build configuration list for PBXProject "ICS-2022" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				74642CFC283E879E00BEFCAB /* Debug */,
