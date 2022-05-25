@@ -20,13 +20,13 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Squares")
 screen.fill(THECOLORS["ivory"])
 
-#Rectangles
-pygame.draw.circle(screen, (THECOLORS["cornflowerblue"]), (100, 500), 100)
-pygame.draw.circle(screen, (THECOLORS["seagreen2"]), (600, 100), 100)
-pygame.draw.circle(screen, (THECOLORS["orangered1"]), (100, 100), 100)
-pygame.draw.circle(screen, (THECOLORS["darkorchid2"]), (600, 500,), 100)
-
 #Circle
+pygame.draw.circle(screen, (THECOLORS["cornflowerblue"]), (50, 550), 50)
+pygame.draw.circle(screen, (THECOLORS["seagreen2"]), (650, 50), 50)
+pygame.draw.circle(screen, (THECOLORS["orangered1"]), (50, 50), 50)
+pygame.draw.circle(screen, (THECOLORS["darkorchid2"]), (650, 550,), 50)
+
+#Rectangle
 pygame.draw.rect(screen, (THECOLORS["yellow1"]), (300, 250, 100, 100))
 
 #Lines
