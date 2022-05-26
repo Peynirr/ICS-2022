@@ -4,7 +4,7 @@ import pygame
 exit = False
 
 # Settings
-size = width, height = 800, 600  # Resolution. (4:3)!
+size = width, height = 1920, 1080  # Resolution. (4:3)!
 background = (0, 0, 0)  # Background color in RGB
 fullscreen = False  # Fullscreen
 
