@@ -14,15 +14,15 @@ logo = pygame.transform.scale(logo, (100, 100))
 clock = pygame.time.Clock()
 img_size = logo.get_rect().size
 screen = pygame.display.set_mode(size)
-pygame.display.set_caption('DVD Corner')
+pygame.display.set_caption('DVD Bounce Splashscreen')
 if fullscreen:
     DISPLAYSURF = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
     pygame.mouse.set_visible(False)
 
 x = randint(50, width-60)
 y = randint(50, height-60)
-x_speed = 2.5
-y_speed = 2.5
+x_speed = 1.75
+y_speed = 1.75
 
 
 def move(x, y):
