@@ -9,7 +9,7 @@ background = (0, 0, 0)  # Background color in RGB
 fullscreen = False  # Fullscreen
 
 
-logo = pygame.image.load('logo.png')
+logo = pygame.image.load('logo.svg')
 logo = pygame.transform.scale(logo, (100, 100))
 clock = pygame.time.Clock()
 img_size = logo.get_rect().size

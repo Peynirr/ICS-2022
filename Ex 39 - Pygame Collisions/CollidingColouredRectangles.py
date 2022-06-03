@@ -18,7 +18,7 @@ if platform.system() == "Windows":
 
 size = (600, 400)
 screen = pygame.display.set_mode(size)
-screen.fill(THECOLORS['white'])
+screen.fill(THECOLORS['black'])
 
 #Title Bar
 pygame.display.set_caption('Colliding Coloured Rectangles')
@@ -26,20 +26,30 @@ pygame.display.set_caption('Colliding Coloured Rectangles')
 myFont = pygame.font.SysFont("wandra", 48)
 clock = pygame.time.Clock()
 
-#Creating The First Surface
+# Create The First Surface
 img1 = pygame.Surface((100, 100))
-img1.fill(THECOLORS['red'])
+img1.fill(THECOLORS['black'])
 
-#Get Rectangle From The Surface
+#Gets The Rectangle From The Surface
 img1Rect = img1.get_rect()
+
 img1.blit(img1, img1Rect)
 
-#Creating The Second Surface
-img2 = pygame.Surface((50, 50))
-img2.fill(THECOLORS['blue'])     
+img1.set_colorkey(THECOLORS['black'])
+screen.blit(img1, img1Rect)
 
-#Get Rectangle From The Surface
+#Creating The Second Surface
+img2 = pygame.Surface((75, 75))
 img2Rect = img2.get_rect()
+
+pygame.draw.circle(img2, THECOLORS['yellow'], (40, 40), 40,)
+pygame.draw.circle(img2, THECOLORS['black'], (22, 30), 9,)
+pygame.draw.circle(img2, THECOLORS['black'], (58, 30), 9,)
+pygame.draw.line(img2, (THECOLORS['black']), (20, 60), (60, 60), 4)
+pygame.draw.line(img2, (THECOLORS['black']), (10, 50), (20, 62), 5)
+pygame.draw.line(img2, (THECOLORS['black']), (70, 50), (60, 62), 5)
+
+img2.set_colorkey(THECOLORS['black'])
 img2.blit(img2, img2Rect)
 
 pygame.display.flip()
@@ -50,15 +60,15 @@ pygame.display.flip()
 ximg1 = 50
 yimg1 = 50
 img1Rect = img1Rect.move(ximg1, yimg1)
-xdir1 = 2
-ydir1 = 2
+xdir1 = 1
+ydir1 = 1
 
 #Image 2
 ximg2 = 300
 yimg2 = 100
 img2Rect = img2Rect.move(ximg2, yimg2)
-xdir2 = -2
-ydir2 = 2
+xdir2 = -1
+ydir2 = 1
 
 # Game Loop
 keepGoing = True
