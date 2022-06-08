@@ -30,7 +30,7 @@ screen.fill(THECOLORS['white'])
 ballImg = pygame.Surface((100, 100))
 surfRect = ballImg.get_rect()
 
-pygame.draw.circle(ballImg, THECOLORS['yellow'], (50, 50), 50,)
+pygame.draw.circle(ballImg, THECOLORS['red'], (50, 50), 50,)
 pygame.draw.circle(ballImg, THECOLORS['black'], (32, 40), 9,)
 pygame.draw.circle(ballImg, THECOLORS['black'], (68, 40), 9,)
 pygame.draw.line(ballImg, (THECOLORS['black']), (30, 70), (70, 70), 4)

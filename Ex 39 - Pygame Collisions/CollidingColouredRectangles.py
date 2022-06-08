@@ -15,10 +15,9 @@ if platform.system() == "Windows":
     os.environ['SDL_VIDEODRIVER'] = 'windib'
 
 #Pygame Configuration
-
 size = (600, 400)
 screen = pygame.display.set_mode(size)
-screen.fill(THECOLORS['black'])
+screen.fill(THECOLORS['white'])
 
 #Title Bar
 pygame.display.set_caption('Colliding Coloured Rectangles')
@@ -28,14 +27,14 @@ clock = pygame.time.Clock()
 
 # Create The First Surface
 img1 = pygame.Surface((100, 100))
-img1.fill(THECOLORS['black'])
+img1.fill(THECOLORS['white'])
 
 #Gets The Rectangle From The Surface
 img1Rect = img1.get_rect()
 
 img1.blit(img1, img1Rect)
 
-img1.set_colorkey(THECOLORS['black'])
+img1.set_colorkey(THECOLORS['white'])
 screen.blit(img1, img1Rect)
 
 #Creating The Second Surface
@@ -49,7 +48,7 @@ pygame.draw.line(img2, (THECOLORS['black']), (20, 60), (60, 60), 4)
 pygame.draw.line(img2, (THECOLORS['black']), (10, 50), (20, 62), 5)
 pygame.draw.line(img2, (THECOLORS['black']), (70, 50), (60, 62), 5)
 
-img2.set_colorkey(THECOLORS['black'])
+img2.set_colorkey(THECOLORS['white'])
 img2.blit(img2, img2Rect)
 
 pygame.display.flip()
