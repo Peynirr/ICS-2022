@@ -5,6 +5,8 @@ import platform, os
 pygame.init()
 wn = pygame.display.set_mode((600,600))
 clock = pygame.time.Clock()
+keepGoing = True
+
 
 HOLER = 25
 
@@ -112,4 +114,3 @@ while True:
       winmsg = font.render(f'Nice! {strokes} strokes!', True, (255,255,255), (24,110,47))
       wn.blit(winmsg, (150,400))
   pygame.display.update()
-
