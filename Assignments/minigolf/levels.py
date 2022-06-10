@@ -44,7 +44,7 @@ def level1():
 def options():
     while True:
         OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
-
+        import test
         SCREEN.fill("white")
 
         OPTIONS_TEXT = get_font(45).render("Options (Difficulty, etc.)", True, "Black")

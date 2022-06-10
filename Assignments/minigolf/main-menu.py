@@ -18,7 +18,7 @@ def get_font(size): # Returns Press-Start-2P in the desired size
 def play():
     while True:
         PLAY_MOUSE_POS = pygame.mouse.get_pos()
-        import levels
+        import test
         SCREEN.fill("black")
 
         PLAY_TEXT = get_font(45).render("Levels", True, "White")
