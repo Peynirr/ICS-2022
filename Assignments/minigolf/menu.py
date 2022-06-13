@@ -10,7 +10,7 @@ pygame.init()
 SCREEN = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("MiniGolf Main Menu_pre")
 
-BG = pygame.image.load("assets/Background.png")
+BG = pygame.image.load("assets/menuBackground.png")
 
 def get_font(size): # Returns Press-Start-2P in the desired size
     return pygame.font.Font("assets/font.ttf", size)
@@ -18,7 +18,7 @@ def get_font(size): # Returns Press-Start-2P in the desired size
 def play():
     while True:
         PLAY_MOUSE_POS = pygame.mouse.get_pos()
-        import test
+        import golf_Lvl1
         SCREEN.fill("black")
 
         PLAY_TEXT = get_font(45).render("Levels", True, "White")
@@ -47,9 +47,10 @@ def options():
 
         SCREEN.fill("white")
         image = pygame.image.load("assets/tarandeep.png")
+        imageSmall = pygame.transform.scale(image, (500, 300))
         OPTIONS_TEXT = get_font(45).render("Options (Difficulty, etc.)", True, "Black")
         OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(640, 260))
-        SCREEN.blit(OPTIONS_TEXT, OPTIONS_RECT, image(0, 0))
+        SCREEN.blit(imageSmall, (4, 0))
 
         OPTIONS_BACK = Button(image=None, pos=(640, 460), 
                             text_input="BACK", font=get_font(75), base_color="Black", hovering_color="Green")
