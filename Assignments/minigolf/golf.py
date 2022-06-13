@@ -2,25 +2,22 @@ import pygame, sys, os, time, random
 from pygame.locals import *
 from pygame.color import THECOLORS
 import platform, os
-pygame.init()
-wn = pygame.display.set_mode((600,600))
-clock = pygame.time.Clock()
-keepGoing = True
 
+#Initialization
+pygame.init()
+wn = pygame.display.set_mode((1200, 750))
 
 HOLER = 25
 
 xspeed = 0
 yspeed = 0
-
 x = 500
 y = 500
-
 strokes = 0
 modulator = 20
 
-sand = [(200,300,100,100),(300,400,50,50)]
-waters = [(0,200,50,300)]
+sand = [(200, 300, 100, 100),(300, 400, 50, 50)]
+waters = [(0, 200, 50, 300)]
 lwalls = [(150,0,10,300),(400,300,10,50)]
 rwalls = [(250,0,10,300),(500,300,10,50)]
 twalls = [(150,300,100,10),(400,300,100,10)]
