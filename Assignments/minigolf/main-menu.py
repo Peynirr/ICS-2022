@@ -46,10 +46,10 @@ def options():
         OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
 
         SCREEN.fill("white")
-
+        image = pygame.image.load("assets/tarandeep.png")
         OPTIONS_TEXT = get_font(45).render("Options (Difficulty, etc.)", True, "Black")
         OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(640, 260))
-        SCREEN.blit(OPTIONS_TEXT, OPTIONS_RECT)
+        SCREEN.blit(OPTIONS_TEXT, OPTIONS_RECT, image(0, 0))
 
         OPTIONS_BACK = Button(image=None, pos=(640, 460), 
                             text_input="BACK", font=get_font(75), base_color="Black", hovering_color="Green")
@@ -79,7 +79,7 @@ def main_menu():
         PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 250), 
                             text_input="PLAY", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
         OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400), 
-                            text_input="OPTIONS", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+                            text_input="CREDITS", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
         QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(640, 550), 
                             text_input="QUIT", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
 
