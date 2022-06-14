@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 from pygame.color import THECOLORS
 import sys
+
 # Initializes Pygame and sets the window up
 pygame.init()
 screen = pygame.display.set_mode((1200, 750))
@@ -76,27 +77,20 @@ while toNext2 == 0:
 
     # Slow down sand
     sand1 = pygame.draw.rect(screen, (212, 176, 106), (400, 360, 100, 100))
-    sand2 = pygame.draw.rect(screen, (212, 176, 106), (340, 420, 100, 100))
-    sand4 = pygame.draw.rect(screen, (212, 176, 106), (750, 200, 100, 100))
-    sand3 = pygame.draw.rect(screen, (212, 176, 106), (800, 250, 100, 100))
 
     if sand1.collidepoint(xPos, yPos):
         horizontalSpeed *= 0.9
         verticalSpeed *= 0.9
-    if sand2.collidepoint(xPos, yPos):
-        horizontalSpeed *= 0.9
-        verticalSpeed *= 0.9
-    if sand3.collidepoint(xPos, yPos):
-        horizontalSpeed *= 0.9
-        verticalSpeed *= 0.9
-    if sand4.collidepoint(xPos, yPos):
-        horizontalSpeed *= 0.9
-        verticalSpeed *= 0.9
-    
+
+    # Water or Reset brick
+    reset = pygame.draw.rect(screen, (54, 84, 217), (0, 200, 50, 300))
+    if reset.collidepoint(xPos, yPos):
+        xPos = 500
+        yPos = 500
+        horizontalSpeed = 0
+        verticalSpeed = 0
+
     # Ball design, at the end because pygame is kind of stupid, and makes things that are the end appear on top.
     pygame.draw.circle(screen, (255, 255, 255), (round(xPos), round(yPos)), 15)
     pygame.display.update()
 
-# Next Level script
-if toNext2 == 1:
-    import golf_Lvl3

@@ -2,26 +2,23 @@ import pygame
 from pygame.locals import *
 from pygame.color import THECOLORS
 import sys
+
 # Initializes Pygame and sets the window up
 pygame.init()
 screen = pygame.display.set_mode((1200, 750))
 backgroundImg = pygame.image.load('assets/golfBackground.png')
-tarandeep = pygame.image.load("assets/tarandeep.png")
-tarandeepSmall = pygame.transform.scale(tarandeep, (100, 100))
-
 # Starting position, strokes and speed.
 horizontalSpeed = 0
 verticalSpeed = 0
-xPos = 75
-yPos = 700
+xPos = 500
+yPos = 500
 strokes = 0
 font = pygame.font.Font('assets/BRLNSB.TTF', 30)
-toNext2 = 0
+toNext = 0
 
 # All the code, in while loop.
-while toNext2 == 0:
-    screen.blit(backgroundImg, (0, 0))
-    screen.blit(tarandeepSmall, (1020, 650))
+while toNext == 0:
+    screen.blit(backgroundImg,(0,0))
     pygame.time.delay(0)
 
     # Hit the ball on click
@@ -45,25 +42,39 @@ while toNext2 == 0:
         verticalSpeed *= -1
 
     # When in hole, go to next level
-    if ((xPos - 75) ** 2 + (yPos - 700) ** 2) ** 0.5 < 25:
+    if ((xPos - 100) ** 2 + (yPos - 100) ** 2) ** 0.5 < 25:
         horizontalSpeed *= 0.97
         verticalSpeed *= 0.97
         if abs(verticalSpeed) < 0.1 and abs(horizontalSpeed) < 0.1:
-            toNext2 += 1
+            toNext += 1
 
     # Par counter
     parCount = font.render(f'par = {strokes}', True, (THECOLORS["white"]), (24, 110, 47))
     screen.blit(parCount, (1070, 700))
 
     # Hole to get ball into
-    pygame.draw.circle(screen, (255, 255, 255), (950, 550), 25)
-    pygame.draw.circle(screen, (0, 0, 0), (950, 550), 24)
+    pygame.draw.circle(screen, (255, 255, 255), (100, 100), 25)
+    pygame.draw.circle(screen, (0, 0, 0), (100, 100), 24)
 
-    # Wall Script (x, y, length, width)
-    wall1 = pygame.draw.rect(screen, (THECOLORS['grey']), (150, 250, 50, 600))
-    wall2 = pygame.draw.polygon(screen, (THECOLORS['grey']), [(1200, 0), (800, 0), (1200, 400)])
-    wall3 = pygame.draw.rect(screen, (THECOLORS['grey']), (650, 375, 25, 375))
+    # Slow down Sand
+    sand = pygame.draw.rect(screen, (112, 176, 106), (234, 400, 123, 123))
+    if sand.collidepoint(xPos, yPos):
+        horizontalSpeed *= 0.8999
+        verticalSpeed *= 0.8999
 
+    # Water or Reset brick
+    reset = pygame.draw.rect(screen, (54, 84, 217), (0, 200, 50, 300))
+    if reset.collidepoint(xPos, yPos):
+        xPos = 500
+        yPos = 500
+        horizontalSpeed = 0
+        verticalSpeed = 0
+
+    # Wall Script (x, y, lenhth, width)
+    wall1 = pygame.draw.rect(screen, (THECOLORS['grey']), (5, 40, 3, 5))
+    wall2 = pygame.draw.rect(screen, (THECOLORS['grey']), (400, 300, 10, 50))
+    wall3 = pygame.draw.rect(screen, (THECOLORS['grey']), (500, 300, 10, 50))
+    wall4 = pygame.draw.rect(screen, (THECOLORS['grey']), (400, 300, 100, 10))
     if wall1.collidepoint(xPos, yPos):
         horizontalSpeed = -1 * abs(horizontalSpeed)
         verticalSpeed = -1 * abs(verticalSpeed)
@@ -73,30 +84,21 @@ while toNext2 == 0:
     if wall3.collidepoint(xPos, yPos):
         horizontalSpeed = -1 * abs(horizontalSpeed)
         verticalSpeed = -1 * abs(verticalSpeed)
+    if wall4.collidepoint(xPos, yPos):
+        horizontalSpeed = -1 * abs(horizontalSpeed)
+        verticalSpeed = -1 * abs(verticalSpeed)
 
     # Slow down sand
-    sand1 = pygame.draw.rect(screen, (212, 176, 106), (400, 360, 100, 100))
-    sand2 = pygame.draw.rect(screen, (212, 176, 106), (340, 420, 100, 100))
-    sand4 = pygame.draw.rect(screen, (212, 176, 106), (750, 200, 100, 100))
-    sand3 = pygame.draw.rect(screen, (212, 176, 106), (800, 250, 100, 100))
+    sand = pygame.draw.rect(screen, (212, 176, 106), (234, 345, 123, 123))
+    if sand.collidepoint(xPos, yPos):
+        horizontalSpeed *= 0.9
+        verticalSpeed *= 0.9
 
-    if sand1.collidepoint(xPos, yPos):
-        horizontalSpeed *= 0.9
-        verticalSpeed *= 0.9
-    if sand2.collidepoint(xPos, yPos):
-        horizontalSpeed *= 0.9
-        verticalSpeed *= 0.9
-    if sand3.collidepoint(xPos, yPos):
-        horizontalSpeed *= 0.9
-        verticalSpeed *= 0.9
-    if sand4.collidepoint(xPos, yPos):
-        horizontalSpeed *= 0.9
-        verticalSpeed *= 0.9
-    
     # Ball design, at the end because pygame is kind of stupid, and makes things that are the end appear on top.
     pygame.draw.circle(screen, (255, 255, 255), (round(xPos), round(yPos)), 15)
     pygame.display.update()
 
 # Next Level script
-if toNext2 == 1:
-    import golf_Lvl3
+if toNext == 1:
+    import golf_Lvl2
+pygame.quit()

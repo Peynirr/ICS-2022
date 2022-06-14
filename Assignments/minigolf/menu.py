@@ -4,6 +4,7 @@
 # Main-Menu for MiniGolf
 import pygame, sys
 from button import Button
+import time
 
 pygame.init()
 
@@ -18,28 +19,8 @@ def get_font(size): # Returns Press-Start-2P in the desired size
 def play():
     while True:
         PLAY_MOUSE_POS = pygame.mouse.get_pos()
+        time.sleep(0.5)
         import golf_Lvl1
-        SCREEN.fill("black")
-
-        PLAY_TEXT = get_font(45).render("Levels", True, "White")
-        PLAY_RECT = PLAY_TEXT.get_rect(center=(640, 260))
-        SCREEN.blit(PLAY_TEXT, PLAY_RECT)
-
-        PLAY_BACK = Button(image=None, pos=(640, 460), 
-                            text_input="BACK", font=get_font(75), base_color="White", hovering_color="Green")
-
-        PLAY_BACK.changeColor(PLAY_MOUSE_POS)
-        PLAY_BACK.update(SCREEN)
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if PLAY_BACK.checkForInput(PLAY_MOUSE_POS):
-                    main_menu()
-
-        pygame.display.update()
     
 def options():
     while True:
@@ -47,7 +28,7 @@ def options():
 
         SCREEN.fill("white")
         image = pygame.image.load("assets/tarandeep.png")
-        imageSmall = pygame.transform.scale(image, (500, 300))
+        imageSmall = pygame.transform.scale(image, (500, 500))
         OPTIONS_TEXT = get_font(45).render("Options (Difficulty, etc.)", True, "Black")
         OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(640, 260))
         SCREEN.blit(imageSmall, (4, 0))
@@ -74,7 +55,7 @@ def main_menu():
 
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
-        MENU_TEXT = get_font(100).render("MAIN MENU", True, "#b68f40")
+        MENU_TEXT = get_font(100).render("MAIN MENU", True, "#d7fcd4")
         MENU_RECT = MENU_TEXT.get_rect(center=(640, 100))
 
         PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 250), 
