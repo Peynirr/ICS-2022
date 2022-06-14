@@ -17,10 +17,10 @@ xPos = 75
 yPos = 700
 strokes = 0
 font = pygame.font.Font('assets/BRLNSB.TTF', 30)
-toNext2 = 0
+toNext = 0
 
 # All the code, in while loop.
-while toNext2 == 0:
+while toNext == 0:
     screen.blit(backgroundImg, (0, 0))
     screen.blit(tarandeepSmall, (1020, 650))
     pygame.time.delay(0)
@@ -50,7 +50,7 @@ while toNext2 == 0:
         horizontalSpeed *= 0.97
         verticalSpeed *= 0.97
         if abs(verticalSpeed) < 0.1 and abs(horizontalSpeed) < 0.1:
-            toNext2 += 1
+            toNext += 1
 
     # Par counter
     parCount = font.render(f'par = {strokes}', True, (THECOLORS["white"]), (24, 110, 47))
@@ -94,3 +94,7 @@ while toNext2 == 0:
     pygame.draw.circle(screen, (255, 255, 255), (round(xPos), round(yPos)), 15)
     pygame.display.update()
 
+
+# Next Level script
+if toNext == 1:
+    import golf_Lvl3
