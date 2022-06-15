@@ -20,12 +20,11 @@ def play():
     while True:
         PLAY_MOUSE_POS = pygame.mouse.get_pos()
         time.sleep(0.5)
-        import golf_Lvl1
-    
+        import main
+        
 def options():
     while True:
         OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
-
         SCREEN.fill("white")
         image = pygame.image.load("assets/tarandeep.png")
         imageSmall = pygame.transform.scale(image, (500, 500))
