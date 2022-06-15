@@ -255,4 +255,4 @@ while toNext == 1:
 
 # Next Level script
     if toNext2 == 1:
-        import menu
+        import mainmenu
