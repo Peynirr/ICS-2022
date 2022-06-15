@@ -20,7 +20,7 @@ def play():
     while True:
         PLAY_MOUSE_POS = pygame.mouse.get_pos()
         time.sleep(0.5)
-        import main
+        
         
 def options():
     while True:

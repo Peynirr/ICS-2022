@@ -2,188 +2,600 @@ import pygame
 from pygame.locals import *
 from pygame.color import THECOLORS
 import sys
-from button import Button
 import time
+
+# Generic importing.
+# Initalizes Pygame and sets the window up
+pygame.init()
+screen = pygame.display.set_mode((1200, 750))
+bgImg = pygame.image.load('assets/golfBackground.png')
+tarandeep = pygame.image.load('assets/tarandeep.png')
+tarandeepSmall = pygame.transform.scale(tarandeep, (175, 175))
+font = pygame.font.Font('assets/BRLNSB.TTF', 30)
 
 def main():
     level1()
     level2()
+    level3()
+    level4()
+    level5()
 
 def level1():
-    # Initializes Pygame and sets the window up
-    pygame.init()
-    screen = pygame.display.set_mode((1200, 750))
-    backgroundImg = pygame.image.load('assets/golfBackground.png')
-    tarandeep = pygame.image.load("assets/tarandeep.png")
-    tarandeepSmall = pygame.transform.scale(tarandeep, (100, 100))
-
     # Starting position, strokes and speed.
-    horizontalSpeed = 0
-    verticalSpeed = 0
-    xPos = 100
-    yPos = 700
+    xSpeed = 0
+    ySpeed = 0
+    x = 75
+    y = 700
     strokes = 0
-    font = pygame.font.Font('assets/BRLNSB.TTF', 30)
     toNext = 0
 
-    # All the code, in while loop.
     while toNext == 0:
-        screen.blit(backgroundImg, (0, 0))
+        screen.blit(bgImg, (0, 0))
         screen.blit(tarandeepSmall, (1020, 650))
-        pygame.time.delay(0)
-
-        # Hit the ball on click
-        if abs(horizontalSpeed) < 0.1 and abs(verticalSpeed) < 0.1:
-            pygame.draw.line(screen, (0, 165, 0), (xPos, yPos), pygame.mouse.get_pos())
-        for event in pygame.event.get():
-            if abs(horizontalSpeed) < 0.1 and abs(verticalSpeed) < 0.1:
-                if event.type == pygame.MOUSEBUTTONUP:
-                    horizontalSpeed = -int((pygame.mouse.get_pos()[0] - xPos) / 20)
-                    verticalSpeed = -int((pygame.mouse.get_pos()[1] - yPos) / 20)
-                    strokes += 1
-        xPos += horizontalSpeed
-        yPos += verticalSpeed
-        horizontalSpeed = horizontalSpeed * 0.98
-        verticalSpeed = verticalSpeed * 0.98
-
-        # Barriers
-        if xPos > 1180 or xPos < 16:
-            horizontalSpeed *= -1
-        if yPos > 720 or yPos < 16:
-            verticalSpeed *= -1
-
-        # When in hole, go to next level
-        if ((xPos - 650) ** 2 + (yPos - 650) ** 2) ** 0.5 < 25:
-            horizontalSpeed *= 0.97
-            verticalSpeed *= 0.97
-            if abs(verticalSpeed) < 0.1 and abs(horizontalSpeed) < 0.1:
-                toNext += 1
-
-        # Par counter
-        parCount = font.render(f'par = {strokes}', True, (THECOLORS["white"]), (24, 110, 47))
-        screen.blit(parCount, (1070, 700))
+        pygame.time.delay(10)
 
         # Hole to get ball into
         pygame.draw.circle(screen, (255, 255, 255), (650, 650), 25)
         pygame.draw.circle(screen, (0, 0, 0), (650, 650), 24)
 
-        # Wall Script (x, y, length, width)
+    # Hit the ball on click
+        if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
+            pygame.draw.line(screen, (0, 165, 0), (x, y), pygame.mouse.get_pos())
+        for event in pygame.event.get():
+            if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
+                if event.type == pygame.MOUSEBUTTONUP:
+                    xSpeed = -int((pygame.mouse.get_pos()[0] - x) / 20)
+                    ySpeed = -int((pygame.mouse.get_pos()[1] - y) / 20)
+                    strokes += 1
+        x += xSpeed
+        y += ySpeed
+        xSpeed = xSpeed * 0.98
+        ySpeed = ySpeed * 0.98
+
         wall1 = pygame.draw.rect(screen, (THECOLORS['grey']), (150, 250, 50, 600))
-        wall2 = pygame.draw.polygon(screen, (THECOLORS['grey']), [(1200, 0), (800, 0), (1200, 400)])
+        wall2 = pygame.draw.rect(screen, (THECOLORS['grey']), (125, 250, 50, 600))
+        wall3 = pygame.draw.polygon(screen, (THECOLORS['grey']), [(1200, 0), (800, 0), (1200, 400)])
+        wall4 = pygame.draw.polygon(screen, (THECOLORS['grey']), [(1200, 0), (800, 0), (1200, 400)])
 
-        if wall1.collidepoint(xPos, yPos):
-            horizontalSpeed = -1 * abs(horizontalSpeed)
-            verticalSpeed = -1 * abs(verticalSpeed)
-        if wall2.collidepoint(xPos, yPos):
-            horizontalSpeed = -1 * abs(horizontalSpeed)
-            verticalSpeed = -1 * abs(verticalSpeed)
+        if wall1.collidepoint(x, y):
+            xSpeed = -1 * abs(xSpeed)
+            ySpeed = -1 * abs(ySpeed)
+        if wall2.collidepoint(x, y):
+            xSpeed = -1 * abs(xSpeed)
+            ySpeed = -1 * abs(ySpeed)
+        if wall3.collidepoint(x, y):
+            xSpeed = -1 * abs(xSpeed)
+            ySpeed = -1 * abs(ySpeed)
+        if wall4.collidepoint(x, y):
+            xSpeed = -1 * abs(xSpeed)
+            ySpeed = -1 * abs(ySpeed)
 
-        # Ball design, at the end because pygame is kind of stupid, and makes things that are the end appear on top.
-        pygame.draw.circle(screen, (255, 255, 255), (round(xPos), round(yPos)), 15)
-        pygame.display.update()
-
-    # Next Level script
-    if toNext == 1:
-        pygame.quit()
-
-def level2():
-    # Initializes Pygame and sets the window up
-    pygame.init()
-    screen = pygame.display.set_mode((1200, 750))
-    backgroundImg = pygame.image.load('assets/golfBackground.png')
-    tarandeep = pygame.image.load("assets/tarandeep.png")
-    tarandeepSmall = pygame.transform.scale(tarandeep, (100, 100))
-
-    # Starting position, strokes and speed.
-    horizontalSpeed = 0
-    verticalSpeed = 0
-    xPos = 75
-    yPos = 700
-    strokes = 0
-    font = pygame.font.Font('assets/BRLNSB.TTF', 30)
-    toNext = 0
-
-    # All the code, in while loop.
-    while toNext == 0:
-        screen.blit(backgroundImg, (0, 0))
-        screen.blit(tarandeepSmall, (1020, 650))
-        pygame.time.delay(0)
+        # Only draw line when stopped
+        if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
+            pygame.draw.line(screen, (0, 165, 0), (x, y), pygame.mouse.get_pos())
 
         # Hit the ball on click
-        if abs(horizontalSpeed) < 0.1 and abs(verticalSpeed) < 0.1:
-            pygame.draw.line(screen, (0, 165, 0), (xPos, yPos), pygame.mouse.get_pos())
         for event in pygame.event.get():
-            if abs(horizontalSpeed) < 0.1 and abs(verticalSpeed) < 0.1:
+            if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
                 if event.type == pygame.MOUSEBUTTONUP:
-                    horizontalSpeed = -int((pygame.mouse.get_pos()[0] - xPos) / 20)
-                    verticalSpeed = -int((pygame.mouse.get_pos()[1] - yPos) / 20)
-                    strokes += 1
-        xPos += horizontalSpeed
-        yPos += verticalSpeed
-        horizontalSpeed = horizontalSpeed * 0.98
-        verticalSpeed = verticalSpeed * 0.98
+                    xSpeed = -int((pygame.mouse.get_pos()[0] - x) / 20)
+                    ySpeed = -int((pygame.mouse.get_pos()[1] - y) / 20)
 
-        # Barriers
-        if xPos > 1180 or xPos < 16:
-            horizontalSpeed *= -1
-        if yPos > 720 or yPos < 16:
-            verticalSpeed *= -1
+        # Move the ball
+        x += xSpeed
+        y += ySpeed
 
-        # When in hole, go to next level
-        if ((xPos - 75) ** 2 + (yPos - 700) ** 2) ** 0.5 < 25:
-            horizontalSpeed *= 0.97
-            verticalSpeed *= 0.97
-            if abs(verticalSpeed) < 0.1 and abs(horizontalSpeed) < 0.1:
+        # Deceleration
+        xSpeed = xSpeed * 0.98
+        ySpeed = ySpeed * 0.98
+
+        # Bouncing
+        if x > 1184 or x < 16:
+            xSpeed *= -1
+        if y > 736 or y < 16:
+            ySpeed *= -1
+
+        # Checks to see if in hole
+        if ((x - 650) ** 2 + (y - 650) ** 2) ** 0.5 < 25:
+            xSpeed *= 0.97
+            ySpeed *= 0.97
+            if abs(ySpeed) < 0.1 and abs(xSpeed) < 0.1:
                 toNext += 1
 
+        # Ball design, at the end because pygame is kind of stupid, and makes things that are the end appear on top.
+        pygame.draw.circle(screen, (THECOLORS['white']), (round(x), round(y)), 15)
+
         # Par counter
-        parCount = font.render(f'par = {strokes}', True, (THECOLORS["white"]), (24, 110, 47))
+        screen.blit(tarandeepSmall, (1050, 575))
+        parCount = font.render(f'PAR   {strokes}', True, (THECOLORS["white"]), (0, 0, 0))
         screen.blit(parCount, (1070, 700))
+
+        pygame.display.update()
+
+def level2():    
+    # Starting position, strokes and speed.
+    xSpeed = 0
+    ySpeed = 0
+    x = 75
+    y = 600
+    strokes = 0
+    toNext = 0
+    
+    while toNext == 0:
+        screen.blit(bgImg, (0, 0))
+        screen.blit(tarandeepSmall, (1020, 650))
+        pygame.time.delay(10)
 
         # Hole to get ball into
         pygame.draw.circle(screen, (255, 255, 255), (950, 550), 25)
         pygame.draw.circle(screen, (0, 0, 0), (950, 550), 24)
 
+        # Hit the ball on click
+        if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
+            pygame.draw.line(screen, (0, 165, 0), (x, y), pygame.mouse.get_pos())
+        for event in pygame.event.get():
+            if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
+                if event.type == pygame.MOUSEBUTTONUP:
+                    xSpeed = -int((pygame.mouse.get_pos()[0] - x) / 20)
+                    ySpeed = -int((pygame.mouse.get_pos()[1] - y) / 20)
+                    strokes += 1
+        x += xSpeed
+        y += ySpeed
+        xSpeed = xSpeed * 0.98
+        ySpeed = ySpeed * 0.98
+
+        # Drawing sand
+        sand1 = pygame.draw.rect(screen, (212, 176, 106), (400, 360, 100, 100))
+        sand2 = pygame.draw.rect(screen, (212, 176, 106), (340, 420, 100, 100))
+        sand3 = pygame.draw.rect(screen, (212, 176, 106), (750, 200, 100, 100))
+        sand4 = pygame.draw.rect(screen, (212, 176, 106), (800, 250, 100, 100))
+        sand5 = pygame.draw.rect(screen, (212, 176, 106), (950, 100, 100, 100))
+        sand6 = pygame.draw.rect(screen, (212, 176, 106), (900, 50, 100, 100))
+
+        # Behavior:
+        if sand1.collidepoint(x, y):
+            xSpeed *= 0.9
+            ySpeed *= 0.9
+        if sand2.collidepoint(x, y):
+            xSpeed *= 0.9
+            ySpeed *= 0.9
+        if sand3.collidepoint(x, y):
+            xSpeed *= 0.9
+            ySpeed *= 0.9
+        if sand4.collidepoint(x, y):
+            xSpeed *= 0.9
+            ySpeed *= 0.9
+        if sand5.collidepoint(x, y):
+            xSpeed *= 0.9
+            ySpeed *= 0.9
+        if sand6.collidepoint(x, y):
+            xSpeed *= 0.9
+            ySpeed *= 0.9
+
         # Wall Script (x, y, length, width)
-        wall1 = pygame.draw.rect(screen, (THECOLORS['grey']), (150, 250, 50, 600))
-        wall2 = pygame.draw.polygon(screen, (THECOLORS['grey']), [(1200, 0), (800, 0), (1200, 400)])
-        wall3 = pygame.draw.rect(screen, (THECOLORS['grey']), (650, 375, 25, 375))
+        wall1 = pygame.draw.rect(screen, (THECOLORS['grey']), (100, 100, 50, 600))
+        wall2 = pygame.draw.rect(screen, (THECOLORS['grey']), (750, 375, 25, 375))
 
-        if wall1.collidepoint(xPos, yPos):
-            horizontalSpeed = -1 * abs(horizontalSpeed)
-            verticalSpeed = -1 * abs(verticalSpeed)
-        if wall2.collidepoint(xPos, yPos):
-            horizontalSpeed = -1 * abs(horizontalSpeed)
-            verticalSpeed = -1 * abs(verticalSpeed)
-        if wall3.collidepoint(xPos, yPos):
-            horizontalSpeed = -1 * abs(horizontalSpeed)
-            verticalSpeed = -1 * abs(verticalSpeed)
+        if wall1.collidepoint(x,y):
+            xSpeed = -1 * abs(xSpeed)
+            ySpeed = -1 * abs(ySpeed)
+        if wall2.collidepoint(x,y):
+            xSpeed = -1 * abs(xSpeed)
+            ySpeed = -1 * abs(ySpeed)
 
-        # Slow down sand
-        sand1 = pygame.draw.rect(screen, (212, 176, 106), (400, 360, 123, 123))
-        sand2 = pygame.draw.rect(screen, (212, 176, 106), (340, 420, 123, 123))
-        sand4 = pygame.draw.rect(screen, (212, 176, 106), (750, 200, 123, 123))
-        sand3 = pygame.draw.rect(screen, (212, 176, 106), (800, 250, 123, 123))
+        # Only draw line when stopped
+        if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
+            pygame.draw.line(screen, (0, 0, 0), (x, y), pygame.mouse.get_pos())
 
-        if sand1.collidepoint(xPos, yPos):
-            horizontalSpeed *= 0.9
-            verticalSpeed *= 0.9
-        if sand2.collidepoint(xPos, yPos):
-            horizontalSpeed *= 0.9
-            verticalSpeed *= 0.9
-        if sand3.collidepoint(xPos, yPos):
-            horizontalSpeed *= 0.9
-            verticalSpeed *= 0.9
-        if sand4.collidepoint(xPos, yPos):
-            horizontalSpeed *= 0.9
-            verticalSpeed *= 0.9
-    
+        # Hit the ball on click
+        for event in pygame.event.get():
+            if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
+                if event.type == pygame.MOUSEBUTTONUP:
+                    xSpeed = -int((pygame.mouse.get_pos()[0] - x) / 20)
+                    ySpeed = -int((pygame.mouse.get_pos()[1] - y) / 20)
+                    strokes += 1
+
+        # Move the ball
+        x += xSpeed
+        y += ySpeed
+
+        # Deceleration
+        xSpeed = xSpeed * 0.98
+        ySpeed = ySpeed * 0.98
+
+        # Bouncing
+        if x > 1184 or x < 16:
+            xSpeed *= -1
+        if y > 736 or y < 16:
+            ySpeed *= -1
+
+        # Checks to see if in hole
+        if ((x - 950) ** 2 + (y - 550) ** 2) ** 0.5 < 25:
+            xSpeed *= 0.97
+            ySpeed *= 0.97
+            if abs(ySpeed) < 0.1 and abs(xSpeed) < 0.1:
+                toNext += 1
+        
         # Ball design, at the end because pygame is kind of stupid, and makes things that are the end appear on top.
-        pygame.draw.circle(screen, (255, 255, 255), (round(xPos), round(yPos)), 15)
+        pygame.draw.circle(screen, (255, 255, 255), (round(x), round(y)), 15)
+        
+        # Par counter
+        screen.blit(tarandeepSmall, (1050, 575))
+        parCount = font.render(f'PAR   {strokes}', True, (THECOLORS["white"]), (0, 0, 0))
+        screen.blit(parCount, (1070, 700))
+
         pygame.display.update()
 
-    # Next Level script
-    if toNext == 1:
-        import mainmenu
+def level3():
+    # Starting position, strokes and speed.
+    xSpeed = 0
+    ySpeed = 0
+    x = 75
+    y = 700
+    strokes = 0
+    toNext = 0
+
+    while toNext == 0:
+        screen.blit(bgImg, (0, 0))
+        screen.blit(tarandeepSmall, (1020, 650))
+        pygame.time.delay(10)
+
+        # Hole to get ball into
+        pygame.draw.circle(screen, (255, 255, 255), (700, 700), 25)
+        pygame.draw.circle(screen, (0, 0, 0), (700, 700), 24)
+
+        # Hit the ball on click
+        if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
+            pygame.draw.line(screen, (0, 165, 0), (x, y), pygame.mouse.get_pos())
+        for event in pygame.event.get():
+            if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
+                if event.type == pygame.MOUSEBUTTONUP:
+                    xSpeed = -int((pygame.mouse.get_pos()[0] - x) / 20)
+                    ySpeed = -int((pygame.mouse.get_pos()[1] - y) / 20)
+                    strokes += 1
+        x += xSpeed
+        y += ySpeed
+        xSpeed = xSpeed * 0.98
+        ySpeed = ySpeed * 0.98
+
+        # Drawing sand
+        sand1 = pygame.draw.rect(screen, (212, 176, 106), (1000, 100, 123, 123))
+        sand2 = pygame.draw.rect(screen, (212, 176, 106), (950, 150, 123, 123))
+        sand3 = pygame.draw.rect(screen, (212, 176, 106), (100, 100, 123, 123))
+    
+        # Behavior:
+        if sand1.collidepoint(x, y):
+            xSpeed *= 0.9
+            ySpeed *= 0.9
+        if sand2.collidepoint(x, y):
+            xSpeed *= 0.9
+            ySpeed *= 0.9
+        if sand3.collidepoint(x, y):
+            xSpeed *= 0.9
+            ySpeed *= 0.9
+
+        water = pygame.draw.rect(screen, (54, 84, 217), (150, 300, 225, 300))
+
+        # Behavior:
+        if water.collidepoint(x, y):
+            x = 75
+            xSpeed = 0
+            y = 600
+            ySpeed = 0
+
+        # Wall Script (x, y, length, width)
+        wall1 = pygame.draw.rect(screen, (THECOLORS['grey']), (450, 375, 50, 600))
+        wall2 = pygame.draw.rect(screen, (THECOLORS['grey']), (950, 375, 50, 375))
+        wall3 = pygame.draw.rect(screen, (THECOLORS['grey']), (375, 150, 500, 50))
+
+        if wall1.collidepoint(x,y):
+            xSpeed = -1 * abs(xSpeed)
+            ySpeed = -1 * abs(ySpeed)
+        if wall2.collidepoint(x,y):
+            xSpeed = -1 * abs(xSpeed)
+            ySpeed = -1 * abs(ySpeed)
+        if wall3.collidepoint(x,y):
+            xSpeed = -1 * abs(xSpeed)
+            ySpeed = -1 * abs(ySpeed)
+
+        # Only draw line when stopped
+        if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
+            pygame.draw.line(screen, (0, 165, 0), (x, y), pygame.mouse.get_pos())
+
+        # Hit the ball on click
+        for event in pygame.event.get():
+            if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
+                if event.type == pygame.MOUSEBUTTONUP:
+                    xSpeed = -int((pygame.mouse.get_pos()[0] - x) / 20)
+                    ySpeed = -int((pygame.mouse.get_pos()[1] - y) / 20)
+                    strokes += 1
+
+        # Move the ball
+        x += xSpeed
+        y += ySpeed
+
+        # Deceleration
+        xSpeed = xSpeed * 0.98
+        ySpeed = ySpeed * 0.98
+
+        # Bouncing
+        if x > 1184 or x < 16:
+            xSpeed *= -1
+        if y > 736 or y < 16:
+            ySpeed *= -1
+
+        # Checks to see if in hole
+        if ((x - 700) ** 2 + (y - 700) ** 2) ** 0.5 < 25:
+            xSpeed *= 0.97
+            ySpeed *= 0.97
+            if abs(ySpeed) < 0.1 and abs(xSpeed) < 0.1:
+                toNext += 1
+
+        # Ball design, at the end because pygame is kind of stupid, and makes things that are the end appear on top.
+        pygame.draw.circle(screen, (255, 255, 255), (x, y), 15)
+
+        # Par counter
+        screen.blit(tarandeepSmall, (1050, 575))
+        parCount = font.render(f'PAR   {strokes}', True, (THECOLORS["white"]), (0, 0, 0))
+        screen.blit(parCount, (1070, 700))
+
+        pygame.display.update()
+
+def level4():
+    # Starting position, strokes and speed.
+    xSpeed = 0
+    ySpeed = 0
+    x = 120
+    y = 600
+    strokes = 0
+    toNext = 0
+
+    while toNext == 0:
+        screen.blit(bgImg, (0, 0))
+        pygame.time.delay(10)
+
+        # Hole to get ball into
+        pygame.draw.circle(screen, (255, 255, 255), (925, 700), 25)
+        pygame.draw.circle(screen, (0, 0, 0), (925, 700), 24)
+
+        # Hit the ball on click
+        if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
+            pygame.draw.line(screen, (0, 165, 0), (x, y), pygame.mouse.get_pos())
+        for event in pygame.event.get():
+            if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
+                if event.type == pygame.MOUSEBUTTONUP:
+                    xSpeed = -int((pygame.mouse.get_pos()[0] - x) / 20)
+                    ySpeed = -int((pygame.mouse.get_pos()[1] - y) / 20)
+                    strokes += 1
+        x += xSpeed
+        y += ySpeed
+        xSpeed = xSpeed * 0.98
+        ySpeed = ySpeed * 0.98
+
+        # Drawing sand
+        sand1 = pygame.draw.rect(screen, (212, 176, 106), (100, 100, 123, 123))
+        sand2 = pygame.draw.rect(screen, (212, 176, 106), (150, 150, 123, 123))
+        sand3 = pygame.draw.rect(screen, (212, 176, 106), (200, 200, 123, 123))
+        sand4 = pygame.draw.rect(screen, (212, 176, 106), (250, 250, 123, 123))
+
+        # Behavior:
+        if sand1.collidepoint(x, y):
+            xSpeed *= 0.9
+            ySpeed *= 0.9
+        if sand2.collidepoint(x, y):
+            xSpeed *= 0.9
+            ySpeed *= 0.9
+        if sand3.collidepoint(x, y):
+            xSpeed *= 0.9
+            ySpeed *= 0.9
+        if sand4.collidepoint(x, y):
+            xSpeed *= 0.9
+            ySpeed *= 0.9
+
+        water1 = pygame.draw.rect(screen, (54, 84, 217), (900, 50, 250, 100))
+        water2 = pygame.draw.rect(screen, (54, 84, 217), (450, 450, 150, 200))
+        water3 = pygame.draw.rect(screen, (54, 84, 217), (0, 300, 50, 500))
+
+        # Behavior:
+        if water1.collidepoint(x, y):
+            x = 120
+            xSpeed = 0
+            y = 600
+            ySpeed = 0
+        if water2.collidepoint(x, y):
+            x = 120
+            xSpeed = 0
+            y = 600
+            ySpeed = 0
+        if water3.collidepoint(x, y):
+            x = 120
+            xSpeed = 0
+            y = 600
+            ySpeed = 0
+
+        # Wall Script (x, y, length, width)
+        wall1 = pygame.draw.rect(screen, (THECOLORS['grey']), (750, 375, 50, 600))
+        wall2 = pygame.draw.rect(screen, (THECOLORS['grey']), (1050, 375, 50, 375))
+        wall3 = pygame.draw.rect(screen, (THECOLORS['grey']), (800, 200, 500, 45))
+
+        if wall1.collidepoint(x,y):
+            xSpeed = -1 * abs(xSpeed)
+            ySpeed = -1 * abs(ySpeed)
+        if wall2.collidepoint(x,y):
+            xSpeed = -1 * abs(xSpeed)
+            ySpeed = -1 * abs(ySpeed)
+        if wall3.collidepoint(x,y):
+            xSpeed = -1 * abs(xSpeed)
+            ySpeed = -1 * abs(ySpeed)
+
+        # Only draw line when stopped
+        if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
+            pygame.draw.line(screen, (0, 165, 0), (x, y), pygame.mouse.get_pos())
+
+        # Hit the ball on click
+        for event in pygame.event.get():
+            if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
+                if event.type == pygame.MOUSEBUTTONUP:
+                    xSpeed = -int((pygame.mouse.get_pos()[0] - x) / 20)
+                    ySpeed = -int((pygame.mouse.get_pos()[1] - y) / 20)
+                    strokes += 1
+
+        # Move the ball
+        x += xSpeed
+        y += ySpeed
+
+        # Deceleration
+        xSpeed = xSpeed * 0.98
+        ySpeed = ySpeed * 0.98
+
+        # Bouncing
+        if x > 1184 or x < 16:
+            xSpeed *= -1
+        if y > 736 or y < 16:
+            ySpeed *= -1
+
+        # Checks to see if in hole
+        if ((x - 925) ** 2 + (y - 700) ** 2) ** 0.5 < 25:
+            xSpeed *= 0.97
+            ySpeed *= 0.97
+            if abs(ySpeed) < 0.1 and abs(xSpeed) < 0.1:
+                toNext += 1
+
+        # Ball design, at the end because pygame is kind of stupid, and makes things that are the end appear on top.
+        pygame.draw.circle(screen, (255, 255, 255), (round(x), round(y)), 15)
+
+        # Par counter
+        screen.blit(tarandeepSmall, (1050, 575))
+        parCount = font.render(f'PAR   {strokes}', True, (THECOLORS["white"]), (0, 0, 0))
+        screen.blit(parCount, (1070, 700))
+
+        pygame.display.update()
+
+def level5():
+    # Starting position, strokes and speed.
+    xSpeed = 0
+    ySpeed = 0
+    x = 625
+    y = 650
+    strokes = 0
+    toNext = 0
+
+    while toNext == 0:
+        screen.blit(bgImg, (0, 0))
+        pygame.time.delay(10)
+
+        # Hole to get ball into
+        pygame.draw.circle(screen, (255, 255, 255), (120, 115), 25)
+        pygame.draw.circle(screen, (0, 0, 0), (120, 115), 24)
+
+        # Hit the ball on click
+        if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
+            pygame.draw.line(screen, (0, 165, 0), (x, y), pygame.mouse.get_pos())
+        for event in pygame.event.get():
+            if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
+                if event.type == pygame.MOUSEBUTTONUP:
+                    xSpeed = -int((pygame.mouse.get_pos()[0] - x) / 20)
+                    ySpeed = -int((pygame.mouse.get_pos()[1] - y) / 20)
+                    strokes += 1
+        x += xSpeed
+        y += ySpeed
+        xSpeed = xSpeed * 0.98
+        ySpeed = ySpeed * 0.98
+
+        water1 = pygame.draw.rect(screen, (54, 84, 217), (0, 0, 1200, 58))
+        water2 = pygame.draw.rect(screen, (54, 84, 217), (900, 0, 300, 750))
+        water3 = pygame.draw.rect(screen, (54, 84, 217), (0, 174, 800, 100))
+        water4 = pygame.draw.rect(screen, (54, 84, 217), (0, 174, 300, 600))
+        water5 = pygame.draw.rect(screen, (54, 84, 217), (300, 600, 250, 500))
+        water6 = pygame.draw.rect(screen, (54, 84, 217), (700, 400, 300, 400))
+        water7 = pygame.draw.rect(screen, (54, 84, 217), (380, 350, 280, 170))
+        water8 = pygame.draw.rect(screen, (54, 84, 217), (0, 50, 50, 170))
+
+        # Behavior:
+        if water1.collidepoint(x, y):
+            x = 625
+            xSpeed = 0
+            y = 650
+            ySpeed = 0
+        if water2.collidepoint(x, y):
+            x = 625
+            xSpeed = 0
+            y = 650
+            ySpeed = 0
+        if water3.collidepoint(x, y):
+            x = 625
+            xSpeed = 0
+            y = 650
+            ySpeed = 0
+        if water4.collidepoint(x, y):
+            x = 625
+            xSpeed = 0
+            y = 650
+            ySpeed = 0
+        if water5.collidepoint(x, y):
+            x = 625
+            xSpeed = 0
+            y = 650
+            ySpeed = 0
+        if water6.collidepoint(x, y):
+            x = 625
+            xSpeed = 0
+            y = 650
+            ySpeed = 0
+        if water7.collidepoint(x, y):
+            x = 625
+            xSpeed = 0
+            y = 650
+            ySpeed = 0
+        if water8.collidepoint(x, y):
+            x = 625
+            xSpeed = 0
+            y = 650
+            ySpeed = 0
+
+        # Wall Script (x, y, length, width)
+    
+        # Only draw line when stopped
+        if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
+            pygame.draw.line(screen, (0, 165, 0), (x, y), pygame.mouse.get_pos())
+
+        # Hit the ball on click
+        for event in pygame.event.get():
+            if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
+                if event.type == pygame.MOUSEBUTTONUP:
+                    xSpeed = -int((pygame.mouse.get_pos()[0] - x) / 20)
+                    ySpeed = -int((pygame.mouse.get_pos()[1] - y) / 20)
+                    strokes += 1
+
+        # Move the ball
+        x += xSpeed
+        y += ySpeed
+
+        # Deceleration
+        xSpeed = xSpeed * 0.98
+        ySpeed = ySpeed * 0.98
+
+        # Bouncing
+        if x > 1184 or x < 16:
+            xSpeed *= -1
+        if y > 736 or y < 16:
+            ySpeed *= -1
+
+        # Checks to see if in hole
+        if ((x - 120) ** 2 + (y - 115) ** 2) ** 0.5 < 25:
+            xSpeed *= 0.97
+            ySpeed *= 0.97
+            if abs(ySpeed) < 0.1 and abs(xSpeed) < 0.1:
+                toNext += 1
+
+        # Ball design, at the end because pygame is kind of stupid, and makes things that are the end appear on top.
+        pygame.draw.circle(screen, (255, 255, 255), (round(x), round(y)), 15)
+
+        # Par counter
+        screen.blit(tarandeepSmall, (1050, 575))
+        parCount = font.render(f'PAR   {strokes}', True, (THECOLORS["white"]), (0, 0, 0))
+        screen.blit(parCount, (1070, 700))
+
+        pygame.display.update()
 
 main()
