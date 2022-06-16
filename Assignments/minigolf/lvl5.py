@@ -106,7 +106,7 @@ def level5(toNext, xSpeed, ySpeed, x, y, strokes):
     
         # Only draw line when stopped
         if abs(xSpeed) < 0.1 and abs(ySpeed) < 0.1:
-            pygame.draw.line(screen, (0, 165, 0), (x, y), pygame.mouse.get_pos())
+            pygame.draw.line(screen, (0, 0, 0), (x, y), pygame.mouse.get_pos())
 
         # Hit the ball on click
         for event in pygame.event.get():
