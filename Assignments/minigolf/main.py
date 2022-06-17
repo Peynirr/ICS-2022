@@ -1,7 +1,6 @@
 # Omercan
 # ISC2O1 Culminating
-# Mini-Golf
-
+# Mini-Golf Base Game
 import pygame, sys, time, main, time
 from pygame.locals import *
 from pygame.color import THECOLORS
