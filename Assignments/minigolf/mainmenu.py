@@ -6,10 +6,13 @@ import pygame, sys
 from button import Button
 import time
 
+#Initialization
 pygame.init()
 
+#Screen Resolution
 SCREEN = pygame.display.set_mode((1280, 720))
 
+#Title Bar
 pygame.display.set_caption("Tarandeep's Golf Course!")
 
 def get_font(size): # Returns Press-Start-2P in the desired size
