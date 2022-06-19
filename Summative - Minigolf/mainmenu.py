@@ -1,9 +1,10 @@
-# Omercan
-# June 14 2022
+# Omercan, Abhishek
+# June 17 2022
 # ISC2O1 Culminating
 # Mini Golf Main Menu
-import pygame, sys, time
+import pygame
 from button import Button
+import sys
 
 #Initialization
 pygame.init()
@@ -31,9 +32,9 @@ def play():
         pygame.display.update()
 
 #Main Menu Appearance
-def mainMenu():
+def main_Menu():
     while True:
-        #Background
+        #Background - change the file paths to the new location when downloading it
         bg = pygame.image.load("assets/menuBackground.png")
         tarandeep = pygame.image.load('assets/tarandeep.png')   #Base Photo of Tarandeep
         tarandeepSmall = pygame.transform.scale(tarandeep, (475, 500))  #Modified Size of Tarandeep
@@ -73,4 +74,4 @@ def mainMenu():
                     sys.exit()
         pygame.display.update()
 #Call Function
-mainMenu()
+main_Menu()

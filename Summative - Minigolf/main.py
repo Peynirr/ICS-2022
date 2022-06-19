@@ -1,10 +1,10 @@
-# Omercan
+# Omercan, Abhishek
+# June 17 2022
 # ISC2O1 Culminating
 # Mini-Golf Base Game
-import pygame, sys, time, main, time
+import pygame, sys, time
 from pygame.locals import *
 from pygame.color import THECOLORS
-from button import Button
 
 #Intialization Setup
 pygame.init()
@@ -14,7 +14,9 @@ tarandeep = pygame.image.load('assets/tarandeep.png')   #Base Photo of Tarandeep
 tarandeepSmall = pygame.transform.scale(tarandeep, (175, 175))  #Smaller Size of Tarandeep
 font = pygame.font.Font('assets/BRLNSB.TTF', 30)    #Desired Font
 
+#Main Function
 def main():
+    main_menu()
     level1()
     level2()
     level3()
@@ -22,6 +24,11 @@ def main():
     level5()
     import mainmenu
 
+#Main Menu Function
+def main_menu():
+    import mainmenu
+
+#Level 1 Function
 def level1():
     #Default Speed
     xSpeed = 0
@@ -126,6 +133,7 @@ def level1():
 
         pygame.display.update()
 
+#Level 2 Function
 def level2():    
     #Default Speed
     xSpeed = 0
@@ -250,6 +258,7 @@ def level2():
 
         pygame.display.update()
 
+#Level 3 Function
 def level3():
     #Default Speed
     xSpeed = 0
@@ -376,6 +385,7 @@ def level3():
 
         pygame.display.update()
 
+#Level 4 Function
 def level4():
     #Default Speed
     xSpeed = 0
@@ -517,6 +527,7 @@ def level4():
 
         pygame.display.update()
 
+#Level 5 Function
 def level5():
     #Default Speed
     xSpeed = 0
@@ -652,4 +663,5 @@ def level5():
 
         pygame.display.update()
 
+#Call Function
 main()
