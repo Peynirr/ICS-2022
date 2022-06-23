@@ -9,10 +9,10 @@ from pygame.color import THECOLORS
 #Intialization Setup
 pygame.init()
 screen = pygame.display.set_mode((1200, 750))   #Display Size
-bgImg = pygame.image.load('assets/golfBackground.png')  #Game Background
-tarandeep = pygame.image.load('assets/tarandeep.png')   #Base Photo of Tarandeep
+bgImg = pygame.image.load('Assignments/Minigolf/assets/golfBackground.png')  #Game Background
+tarandeep = pygame.image.load('Assignments/Minigolf/assets/tarandeep.png')   #Base Photo of Tarandeep
 tarandeepSmall = pygame.transform.scale(tarandeep, (175, 175))  #Smaller Size of Tarandeep
-font = pygame.font.Font('assets/BRLNSB.TTF', 30)    #Desired Font
+font = pygame.font.Font('Assignments/Minigolf/assets/BRLNSB.TTF', 30)    #Desired Font
 
 #Main Function
 def main():

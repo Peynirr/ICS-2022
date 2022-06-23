@@ -16,7 +16,7 @@ screen = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Tarandeep's Golf Course!")
 
 def getFont(size): # Returns Press-Start-2P in the desired size
-    return pygame.font.Font("assets/font.ttf", size)
+    return pygame.font.Font("Assignments/Minigolf/assets/font.ttf", size)
 
 #When the Play Button is Clicked
 def play():
@@ -35,8 +35,8 @@ def play():
 def main_Menu():
     while True:
         #Background - change the file paths to the new location when downloading it
-        bg = pygame.image.load("assets/menuBackground.png")
-        tarandeep = pygame.image.load('assets/tarandeep.png')   #Base Photo of Tarandeep
+        bg = pygame.image.load("Assignments/Minigolf/assets/menuBackground.png")
+        tarandeep = pygame.image.load('Assignments/Minigolf/assets/tarandeep.png')   #Base Photo of Tarandeep
         tarandeepSmall = pygame.transform.scale(tarandeep, (475, 500))  #Modified Size of Tarandeep
         screen.blit(bg, (0, 0))
         screen.blit(tarandeepSmall, (0, 250))
@@ -48,10 +48,10 @@ def main_Menu():
         menuRect = menuTxt.get_rect(center = (640, 100))
 
         #Appearance For Play Button
-        playButton = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 300), 
+        playButton = Button(image=pygame.image.load("Assignments/Minigolf/assets/Play Rect.png"), pos=(640, 300), 
                             textInput = "PLAY", font = getFont(75), baseColor = "#d7fcd4", hoveringColor = "White")
         #Appearance For Quit Button
-        quitButton = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(640, 450), 
+        quitButton = Button(image=pygame.image.load("Assignments/Minigolf/assets/Quit Rect.png"), pos=(640, 450), 
                             textInput = "QUIT", font = getFont(75), baseColor = "#d7fcd4", hoveringColor = "White")
 
         screen.blit(menuTxt, menuRect)
