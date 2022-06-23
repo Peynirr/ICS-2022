@@ -1,7 +1,7 @@
 # Omercan
 # May 31 2022
 # Ex 39
-# Colliding Coloured Rctangles
+# Colliding Coloured Rectangles
 import pygame, sys, os, time, random
 from pygame.locals import *
 from pygame.color import THECOLORS
